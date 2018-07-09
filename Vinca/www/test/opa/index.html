@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OPA5 tests for Ice Cream Machine App</title>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta charset="utf-8">
+
+	<script id="sap-ui-bootstrap"
+		src="../../../../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-resourceroots='{
+			"sap.suite.ui.commons.demokit.icecream.test": "../"
+		}'
+		data-sap-ui-frameOptions='deny'
+		data-sap-ui-animation="false">
+	</script>
+
+	<script>
+		jQuery.sap.require("sap.ui.qunit.qunit-2-css");
+		jQuery.sap.require("sap.ui.thirdparty.qunit-2");
+		QUnit.config.autostart = false;
+		jQuery.sap.require("sap.ui.qunit.qunit-junit");
+		jQuery.sap.require("sap.suite.ui.commons.demokit.icecream.test.opa.startpage");
+		jQuery.sap.require("sap.suite.ui.commons.demokit.icecream.test.opa.reviews");
+		jQuery.sap.require("sap.suite.ui.commons.demokit.icecream.test.opa.backNavigation");
+		QUnit.start();
+	</script>
+
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<mvc:View
+        controllerName="sap.ovp.app.Main"
+        xmlns="sap.m"
+        xmlns:uxap="sap.uxap"
+        xmlns:l="sap.ui.layout"
+        xmlns:variants="sap.ui.comp.smartvariants"
+        xmlns:core="sap.ui.core"
+        xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:ovp="sap.ovp.ui"
+        xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+        xmlns:build="sap.build"
+        >
+    <DynamicPage class="ovpApplication"
+                 build:metadata="#pattern:OVP">
+        <template:if test="{= !${ui>/globalFilterEntityType} &amp;&amp; !${ui>/description} ? false : true}">
+            <title>
+                <DynamicPageTitle>
+                    <!-- Header definition -->
+                    <heading>
+                        <HBox>
+                            <Title text="{ui>/description}"
+                                   visible="{= ${ui>/globalFilterEntityType} ? false : ${ui>/description} ? true : false}"/>
+                            <variants:SmartVariantManagement id="ovpPageVariant" persistencyKey="ovpGlobalFilter"
+                                                             visible="{= ${ui>/globalFilterEntityType} ? true : false}"/>
+                        </HBox>
+                    </heading>
+                    <actions>
+                        <ToolbarSpacer/>
+                        <!-- If you need actions like show filterbar you can place it in here -->
+                    </actions>
+                    <snappedContent>
+                        <Text id="ovpFilterText"></Text>
+                    </snappedContent>
+                </DynamicPageTitle>
+            </title>
+        </template:if>
+        <template:if test="{ui>/globalFilterEntityType}">
+            <header>
+                <DynamicPageHeader pinnable="true"
+                                   build:metadata="#pattern:Header;prop:objectTitle:Title:\{i18n>title\};prop:objectSubtitile:Description:\{i18n>description\};prop:objectImageURI:ImageSource:\{manifest>sap.ui/icons/icon\}">
+                    <content>
+                        <smartFilterBar:SmartFilterBar id="ovpGlobalFilter"
+                                                       entityType="{ui>/globalFilterEntityType}"
+                                                       persistencyKey="ovpGlobalFilter"
+                                                       filterBarExpanded="true"
+                                                       assignedFiltersChanged="onAssignedFiltersChanged"
+                                                       useToolbar="false"
+                                                       smartVariant="ovpPageVariant"
+                                                       liveMode="true"
+                                                       showGoOnFB="false">
+                            <template:if test="{meta>}">
+                                <smartFilterBar:controlConfiguration>
+                                    <template:with path='meta>com.sap.vocabularies.UI.v1.SelectionFields'
+                                                   var='selectionField'>
+                                        <template:repeat list="{selectionField>}">
+                                            <smartFilterBar:ControlConfiguration
+                                                    key="{= (${selectionField>PropertyPath}).replace('/', '.') }"
+                                                    groupId="_BASIC"
+                                                    />
+                                        </template:repeat>
+                                    </template:with>
+                                </smartFilterBar:controlConfiguration>
+                            </template:if>
+                        </smartFilterBar:SmartFilterBar>
+                    </content>
+                </DynamicPageHeader>
+            </header>
+        </template:if>
+        <content>
+            <!-- Add the content here -->
+            <core:Fragment fragmentName="{ui>/cardContainerFragment}" type="XML"/>
+        </content>
+    </DynamicPage>
+</mvc:View>
+
