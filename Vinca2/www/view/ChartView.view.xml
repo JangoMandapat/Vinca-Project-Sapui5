@@ -12,7 +12,7 @@
 					</viz:VizFrame>
 				</content>
 			</Page>
-		<!-- 	<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
+			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
@@ -28,7 +28,7 @@
 						</RadioButtonGroup>
 					</VBox>
 				</content>
-			</Page> -->
+			</Page>
 			<!-- <Page id="detail2" title="Detail 3 Page" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
  

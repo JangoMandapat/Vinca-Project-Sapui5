@@ -15,7 +15,7 @@ sap.ui.define([
 
 	return Controller.extend("Vinca.controller.ChartView", {
 
-			/*onInit: function(){
+			onInit: function(){
 
 			var oHtml;
 			var that = this;
@@ -25,7 +25,7 @@ sap.ui.define([
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
 			VincaTestDataModel.setData(data);
-			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			/*oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
 			$.ajax({
                         url: "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/VincaTestMonth.xsjs",
                         type: "GET",
@@ -65,7 +65,7 @@ sap.ui.define([
          			alert(xhr.status);
          			alert(xhr.responseText);
      			},
- });
+ });*/
 			var oVizFrame = this.getView().byId("idcolumn");
 
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
@@ -91,7 +91,7 @@ sap.ui.define([
 		  oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
-                        formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,
+                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 
                         visible: true
                     }
@@ -128,7 +128,7 @@ sap.ui.define([
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
 
-		},*/
+		},
 
 
 		onAfterRendering: function() {
