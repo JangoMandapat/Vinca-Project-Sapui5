@@ -19,17 +19,18 @@ sap.ui.define([
 			var that = this;
 			var oView = this.getView();
 			var VincaTestDataModel = new JSONModel();
-			var data = {
+			/*var data = {
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
-			};
-			VincaTestDataModel.setData(data);
+			};*/
+			//VincaTestDataModel.setData(data);
 			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
-			/*$.ajax({
-                        url: "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/VincaMonthTest.xsjs",
+			$.ajax({
+                        url: "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/VincaTestMonth.xsjs",
                         type: "GET",
+                         contentType: "application/json; charset=utf-8",
                         async: false,
-                        username: "J64058", // Most SAP web services require credentials
-     					password: "Hope=123",
+                       // username: "J64058", // Most SAP web services require credentials
+     					//password: "Hope=123",
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
   							VincaTestData.setData(data);
@@ -46,7 +47,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-*/
+
 			/*$.ajax({
      				url: WEBSERVICE_URL,
      				type: "POST", //This is what you should chage

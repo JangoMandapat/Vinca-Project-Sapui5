@@ -32,7 +32,7 @@ sap.ui.define([
 
             if (!this._oFragment) {
                 // add unique prefix
-                this._oFragment = sap.ui.xmlfragment(this.getView().getId(), "sap.suite.ui.commons.demo.tutorial.view.fragments.BusyDialog", this);
+                this._oFragment = sap.ui.xmlfragment(this.getView().getId(), "sap.suite.ui.commons.demo.tutorial.fragment.BusyDialog", this);
                 this.getView().addDependent(this._oFragment);
             }
 

@@ -1,0 +1,7 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+
+		(c) Copyright 2009-2016 SAP SE. All rights reserved
+	
+ */
+sap.ui.define(["jquery.sap.global","./library","sap/rules/ui/ExpressionAdvanced"],function(q,l,E){"use strict";var D=E.extend("sap.rules.ui.DecisionTableCellExpressionAdvanced",{metadata:{library:"sap.rules.ui",properties:{headerValue:{type:"string",defaultValue:"",bindable:"bindable"},fixedOperator:{type:"string",defaultValue:"",bindable:"bindable"},type:{type:"sap.rules.ui.ExpressionType",defaultValue:sap.rules.ui.ExpressionType.BooleanEnhanced,bindable:"bindable"}}}});D.prototype.validateExpression=function(){var e=this.codeMirror?this.codeMirror.getValue():this.getValue();if(e){var v=this.getHeaderValue()+" "+this.getFixedOperator()+" "+e;sap.rules.ui.ExpressionAdvanced.prototype.validateExpression.apply(this,[v]);}else{this.setValueStateText("");}};D.prototype.onAfterRendering=function(){sap.rules.ui.ExpressionAdvanced.prototype.onAfterRendering.apply(this,arguments);this.codeMirror.options.fixedOperator=this.getFixedOperator();this.codeMirror.options.headerValue=this.getHeaderValue();this.codeMirror.options.filterOutStructuredCond=true;this._handleValidation();};D.prototype._handleValidation=function(){this.validateExpression();this._showErrorMessage();if((this.getProperty("valueStateText"))){this.codeMirror.options.expressionEditor._showPopUp();}};return D;},true);

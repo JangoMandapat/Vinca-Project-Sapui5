@@ -4,12 +4,13 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="UTF-8">
-
+	<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 	<title>Suite Controls Tutorial</title>
-
+<!-- src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"   src="././resources/sap-ui-core.js"-->
 	<script id="sap-ui-bootstrap"
+			
 			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-			data-sap-ui-libs="sap.m,sap.viz,sap.ui.layout, sap.ui.unified"
+			data-sap-ui-libs="sap.m,sap.viz,sap.ui.layout"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-resourceroots='{"sap.suite.ui.commons.demo.tutorial": "./"}'>
@@ -18,75 +19,16 @@
 	<script>
 
 		sap.ui.getCore().attachInit(function() {
-			sap.ui.require([
-				"sap/m/Shell",
-				"sap/ui/core/ComponentContainer"
-			], function(Shell, ComponentContainer) {
-				// initialize the UI component
-				// new Shell({
-				// 	app: new ComponentContainer({
-				// 		height: "100%",
-				// 		name: "sap.suite.ui.commons.demo.tutorial"
-				// 	})
-				// })
-			var oShell = new sap.ui.unified.Shell("idOGEShell", {
- 					// headItems: [
- 					//             new sap.ui.unified.ShellHeadItem("idHeadItemsHome", {
- 					//             	icon: "sap-icon://home"
- 					//             })
-					 //            ],
- 					// icon: "img/OGE Logo.png",
- 					// user: new sap.ui.unified.ShellHeadUserItem("idUsername", {
- 					// 	image: "sap-icon://person-placeholder",
- 					// 	showPopupIndicator: false
- 					// }),
-/*  					search: new sap.m.Image("idLogo", {
- 						src: "img/gaato_logo.jpg",
- 						width: "10rem",
- 						height: "3rem"
- 					}), */
- 					headEndItems: new sap.ui.unified.ShellHeadItem({
- 						icon: "sap-icon://log",
- 						press: function() {
- 							$.ajax({
- 								url : "https://pipemonplus-q.open-grid-europe.com/sap/hana/xs/formLogin/token.xsjs",
- 								type : "GET",
- 								beforeSend: function(request) {
- 									request.setRequestHeader("X-CSRF-Token", "Fetch");
- 								},
- 								success : function(data, textStatus, XMLHttpRequest) {
- 									var token = XMLHttpRequest.getResponseHeader("X-CSRF-Token");
- 								    
- 									$.ajax({
- 										url : "https://pipemonplus-q.open-grid-europe.com/sap/hana/xs/formLogin/logout.xscfunc",
- 								        type : "POST",
- 								        beforeSend: function(request) {
- 								        	request.setRequestHeader("X-CSRF-Token", token);
- 								        },
- 								        success : function(data, textStatus, XMLHttpRequest) {
- 								        	var mShell = sap.ui.getCore().byId("idOGEShell"); 
- 								         
-	 								        mShell.destroy();
-	 								        sap.ui.getCore().applyChanges();
-	 								        window.location.href = window.location.origin +"/sap/hana/xs/formLogin/login.html?x-sap-origin-location=%2Foge%2Fapps%2Fvinca%2Findex.html"
-	 								    }
- 								    });
- 								}
- 							});
- 						}
- 					}),
-					content: new sap.ui.core.ComponentContainer({
+		
+				new sap.m.Shell({
+					app: new sap.ui.core.ComponentContainer({
 						height: "100%",
 						name: "sap.suite.ui.commons.demo.tutorial"
-					}),
-				}).addStyleClass("shell")
-				
-				oShell.placeAt("content");
-
-				// .placeAt("content");
+					})
+				}).placeAt("content");
 
 			});
-		});
+		
 	</script>
 </head>
 

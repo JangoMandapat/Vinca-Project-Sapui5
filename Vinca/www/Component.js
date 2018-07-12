@@ -24,13 +24,14 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
-		},
-		createContent: function() {
-			// create root view
-			return sap.ui.view("AppView", {
-				viewName: "sap.suite.ui.commons.demo.tutorial.view.App",
-				type: "XML"
-			});
 		}
+		// ,
+		// createContent: function() {
+		// 	// create root view
+		// 	return sap.ui.view("AppView", {
+		// 		viewName: "sap.suite.ui.commons.demo.tutorial.view.App",
+		// 		type: "XML"
+		// 	});
+		// }
 	});
 });

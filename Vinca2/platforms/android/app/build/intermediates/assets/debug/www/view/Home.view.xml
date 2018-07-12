@@ -1,0 +1,21 @@
+<core:View controllerName="Vinca.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m">
+	<!-- <App>
+		<pages> -->
+			<Page title="{i18n>title}">
+				<content>
+
+	<GenericTile header="Graph View" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
+		<tileContent>
+			<TileContent size="S">
+				<content>
+					<NumericContent size="M" icon="sap-icon://bar-chart" />
+				</content>
+			</TileContent>
+		</tileContent>
+	</GenericTile>
+				</content>
+			</Page>
+		<!-- </pages>
+	</App> -->
+</core:View>
