@@ -8,8 +8,8 @@
 		<detailPages>
 			<Page id="detail" title="Detail 1" class="sapUiStdPage">
 				<content>
-					<!-- <viz:VizFrame xmlns="sap.viz" id="idcolumn">
-					</viz:VizFrame> -->
+					<viz:VizFrame xmlns="sap.viz" id="idcolumn">
+					</viz:VizFrame>
 				</content>
 			</Page>
 		<!-- 	<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"

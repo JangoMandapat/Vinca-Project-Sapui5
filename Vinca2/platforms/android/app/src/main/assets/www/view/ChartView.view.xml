@@ -1,14 +1,18 @@
-<mvc:View controllerName="Vinca.controller.ChartView" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View controllerName="Vinca.controller.ChartView" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true"
+	xmlns:viz="sap.viz.ui5.controls"
 	xmlns="sap.m">
 	<SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
 		<detailPages>
 			<Page id="detail" title="Detail 1" class="sapUiStdPage">
 				<content>
-					
-					
+					<!-- <viz:VizFrame xmlns="sap.viz" id="idcolumn">
+					</viz:VizFrame> -->
 				</content>
 			</Page>
-			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
+		<!-- 	<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
@@ -24,8 +28,8 @@
 						</RadioButtonGroup>
 					</VBox>
 				</content>
-			</Page>
-			<Page id="detail2" title="Detail 3 Page" class="sapUiStdPage" showNavButton="true"
+			</Page> -->
+			<!-- <Page id="detail2" title="Detail 3 Page" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
  
 				<content>
@@ -40,7 +44,7 @@
 					<Label text="Label 5" />
 					<Input/>
 				</content>
-			</Page>
+			</Page> -->
 		</detailPages>
 		<masterPages>
 			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage">
