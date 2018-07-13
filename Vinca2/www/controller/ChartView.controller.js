@@ -131,7 +131,7 @@ sap.ui.define([
 		},
 
 
-		onAfterRendering: function() {
+		/*onAfterRendering: function() {
 			var oSplitCont= this.getSplitContObj(),
 				ref = oSplitCont.getDomRef() && oSplitCont.getDomRef().parentNode;
 			// set all parent elements to 100% height, this should be done by app developer, but just in case
@@ -148,7 +148,7 @@ sap.ui.define([
 					ref = ref.parentNode;
 				}
 			}
-		},
+		},*/
  
 		onPressNavToDetail : function(oEvent) {
 			this.getSplitContObj().to(this.createId("detailDetail"));
