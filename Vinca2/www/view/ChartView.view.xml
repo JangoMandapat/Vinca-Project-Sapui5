@@ -13,20 +13,23 @@
 		<detailPages>
 			<Page id="detail" title="Dein Stromverbrauch" class="sapUiStdPage">
 			<subHeader>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<SegmentedButton selectedKey="kids">
-					<items>
-						<SegmentedButtonItem text="Year" />
-						<SegmentedButtonItem text="Month" />
-						<SegmentedButtonItem text="Day" />
-					</items>
-				</SegmentedButton>
-				<ToolbarSpacer/>
+			<Toolbar>		
+				<DatePicker id="idDatePicker" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="DD/MM/YYYY" />
 			</Toolbar>
 			</subHeader>
+			<content>
+				<Toolbar>	
+			<SegmentedButton selectedKey="year" select="OnHandleSwitchTab">
+					<items>
+						<SegmentedButtonItem text="Year" key="year" />
+						<SegmentedButtonItem text="Month" key="month"/>
+						<SegmentedButtonItem text="Day" key="day"/>
+					</items>
+				</SegmentedButton>
+							</Toolbar>
+
 				<suite:ChartContainer 
-					id="idChartContainer"
+					id="chartContainer"
 					showFullScreen="true"
 				    showPersonalization="false"
 					autoAdjustHeight="false"
@@ -41,7 +44,7 @@
 					</suite:ChartContainerContent>
 				</suite:content>
 				</suite:ChartContainer>
-					
+					</content>
 			</Page>
 			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">

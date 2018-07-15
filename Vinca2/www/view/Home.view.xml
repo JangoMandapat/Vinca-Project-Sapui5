@@ -5,7 +5,7 @@
 			<Page title="{i18n>title}">
 				<content>
 
-	<GenericTile header="Graph View" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
+	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
 		<tileContent>
 			<TileContent size="S">
 				<content>

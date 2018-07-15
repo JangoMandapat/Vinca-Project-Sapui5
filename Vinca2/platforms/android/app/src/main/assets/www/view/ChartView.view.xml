@@ -1,18 +1,52 @@
-<mvc:View controllerName="Vinca.controller.ChartView" 
-	xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	displayBlock="true"
+<core:View 
+	controllerName="Vinca.controller.ChartView" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:suite="sap.suite.ui.commons"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:viz="sap.viz.ui5.controls"
-	xmlns="sap.m">
-	<SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	displayBlock="true"
+	>
+	<SplitContainer id="SplitCont" initialDetail="detail" initialMaster="master">
 		<detailPages>
-			<Page id="detail" title="Detail 1" class="sapUiStdPage">
-				<content>
-					<!-- <viz:VizFrame xmlns="sap.viz" id="idcolumn">
-					</viz:VizFrame> -->
-				</content>
+			<Page id="detail" title="Dein Stromverbrauch" class="sapUiStdPage">
+			<subHeader>
+			<Toolbar>		
+				<DatePicker id="idDatePicker" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="DD/MM/YYYY" />
+			</Toolbar>
+			</subHeader>
+			<content>
+				<Toolbar>	
+			<SegmentedButton selectedKey="Year" select="OnHandleSwitchTab">
+					<items>
+						<SegmentedButtonItem text="Year" key="Year" />
+						<SegmentedButtonItem text="Month" key="month"/>
+						<SegmentedButtonItem text="Day" key="Day"/>
+					</items>
+				</SegmentedButton>
+							</Toolbar>
+
+				<suite:ChartContainer 
+					id="chartcontainer"
+					showFullScreen="true"
+				    showPersonalization="false"
+					autoAdjustHeight="false"
+					showLegend="true">
+
+				 <suite:content>
+						<suite:ChartContainerContent>
+						<suite:content>
+							<viz:VizFrame xmlns="sap.viz" id="idcolumn">
+							</viz:VizFrame>
+						</suite:content>
+					</suite:ChartContainerContent>
+				</suite:content>
+				</suite:ChartContainer>
+					</content>
 			</Page>
-		<!-- 	<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
+			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
@@ -28,7 +62,7 @@
 						</RadioButtonGroup>
 					</VBox>
 				</content>
-			</Page> -->
+			</Page>
 			<!-- <Page id="detail2" title="Detail 3 Page" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
  
@@ -72,4 +106,4 @@
 	</SplitContainer>		
 		
 	
-</mvc:View>
+</core:View>
