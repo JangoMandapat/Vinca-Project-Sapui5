@@ -13,7 +13,7 @@
 		<detailPages>
 			<Page id="detail" title="Dein Stromverbrauch" class="sapUiStdPage">
 				<headerContent>
-					<Text text="Sample"/>
+					<!-- <Text text="Sample"/> -->
 				</headerContent>
 				<subHeader>
 					<Toolbar>		
