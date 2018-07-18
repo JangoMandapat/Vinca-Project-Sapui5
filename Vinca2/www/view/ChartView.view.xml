@@ -17,12 +17,12 @@
 				</headerContent>
 				<subHeader>
 					<Toolbar>		
-						<DatePicker id="idDatePicker" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY" />
+						<DatePicker id="idDatePicker" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY" />
 					</Toolbar>
 				</subHeader>
 			<content>
 				<Toolbar>	
-			<SegmentedButton selectedKey="year" select="OnHandleSwitchTab">
+			<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab">
 					<items>
 						<SegmentedButtonItem text="Jahr" key="year" />
 						<SegmentedButtonItem text="Monat" key="month"/>

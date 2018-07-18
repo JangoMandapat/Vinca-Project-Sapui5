@@ -15,29 +15,42 @@ sap.ui.define([
 
 	return Controller.extend("Vinca.controller.ChartView", {
 
-			onInit: function(){
+		onInit: function(){
+			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
+			this.fnLoadDefaultValue();
 
+		
+		},
+
+		fnLoadDefaultValue: function(){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();
-			var data = {
+			var VincaTestDataModel = new JSONModel();		
+			var oDatePicker = that.getView().byId("idDatePicker");
+			var id = 1;
+			var sClass= "el";
+			var date = oDatePicker.getValue();
+            var year = date.split(".")[2];
+            var month = date.split(".")[1];
+            var day = date.split(".")[0];
+
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+			var sUrl = "VincaTestYear.xsjs?id=" + id +  "&year=" + year + "&class=" + sClass;
+			/*var data = {
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
-			VincaTestDataModel.setData(data);
-			/*oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			VincaTestDataModel.setData(data);*/
+			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
 			$.ajax({
-                        url: "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/VincaTestMonth.xsjs",
+                        url: sHost+sUrl,
                         type: "GET",
-                         contentType: "application/json; charset=utf-8",
                         async: false,
-                       // username: "J64058", // Most SAP web services require credentials
-     					//password: "Hope=123",
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaTestData.setData(data);
+  							VincaTestDataModel.setData(data);
                             oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
-                            oView.createContent("VincaTestDataModel");                  
+                            /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -50,7 +63,7 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 
-			$.ajax({
+			/*$.ajax({
      				url: WEBSERVICE_URL,
      				type: "POST", //This is what you should chage
      				dataType: "application/json; charset=utf-8",
@@ -66,6 +79,8 @@ sap.ui.define([
          			alert(xhr.responseText);
      			},
  });*/
+
+
 			var oVizFrame = this.getView().byId("idcolumn");
 
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
@@ -88,12 +103,12 @@ sap.ui.define([
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
 
-		  oVizFrame.setVizProperties({
+		   oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
                        /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 
-                        visible: true
+                        visible: false
                     }
                 },
                 valueAxis: {
@@ -127,11 +142,356 @@ sap.ui.define([
 
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
+		},
+
+		OnLoadYear: function(sUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaTestDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			$.ajax({
+                        url: sHost+sUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaTestDataModel.setData(data);
+                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+
+			var oVizFrame = this.getView().byId("idcolumn");
+			oVizFrame.removeAllFeeds();
+			oVizFrame.destroyDataset();
+			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+
+				dimensions : [{
+					name : 'Month',
+					value : "{MONTH}"}],
+
+				measures : [{
+					name : 'Value',
+					value : "{VALUE}"}],
+
+				data :{
+					path :"/rs0"
+				   }
+				 });
+				
+		   oVizFrame.setDataset(oDataset);
+		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setVizType('column'); //Type of the viz frame
+		   // set Viz Properties
+
+		  oVizFrame.setVizProperties({
+                plotArea: {
+                    dataLabel: {
+                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+
+                        visible: false
+                    }
+                },
+                valueAxis: {
+
+                    title: {
+                        visible: false
+                    }
+                },
+                categoryAxis: {
+                    title: {
+                        visible: false
+                    }
+                },
+                title: {
+                    visible: false,
+                    text: 'Year'
+                }
+            });
+
+		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "valueAxis",
+		   		'type' : "Measure",
+		   		'values' : ["Value"]
+		   	}),
+
+	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "categoryAxis",
+		   		'type' : "Dimension",
+		   		'values' : ["Month"]
+		   	});
+
+	     oVizFrame.addFeed(feedValueAxis);
+	     oVizFrame.addFeed(feedCategoryAxis);
+		
+		},
+
+		OnLoadMonth: function(sUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaTestDataModel = new JSONModel();
+			//var oModel = this.getView().getModel("VincaTestDataModel");
+			
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+		
+			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			$.ajax({
+                        url: sHost+sUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaTestDataModel.setData(data);
+                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+
+			var oVizFrame = this.getView().byId("idcolumn");
+			oVizFrame.removeAllFeeds();
+			oVizFrame.destroyDataset();
+			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+
+				dimensions : [{
+					name : 'Day',
+					value : "{DAY}"}],
+
+				measures : [{
+					name : 'Value',
+					value : "{VALUE}"}],
+
+				data :{
+					path :"/rs0"
+				   }
+				 });
+				
+		   oVizFrame.setDataset(oDataset);
+		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setVizType('column'); //Type of the viz frame
+		   // set Viz Properties
+
+		  oVizFrame.setVizProperties({
+                plotArea: {
+                    dataLabel: {
+                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+
+                        visible: false
+                    }
+                },
+                valueAxis: {
+
+                    title: {
+                        visible: false
+                    }
+                },
+                categoryAxis: {
+                    title: {
+                        visible: false
+                    },
+                },
+                title: {
+                    visible: false,
+                    text: 'Year'
+                }
+            });
+
+		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "valueAxis",
+		   		'type' : "Measure",
+		   		'values' : ["Value"]
+		   	}),
+
+	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "categoryAxis",
+		   		'type' : "Dimension",
+		   		'values' : ["Day"]
+		   	});
+
+	     oVizFrame.addFeed(feedValueAxis);
+	     oVizFrame.addFeed(feedCategoryAxis);
+		},
+
+		OnLoadDay: function(sUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			/*var oModel = this.getView().getModel("VincaTestDataModel");
+			oModel.refresh();*/
+			var VincaTestDataModel = new JSONModel();			
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			$.ajax({
+                        url: sHost+sUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaTestDataModel.setData(data);
+                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+
+
+			var oVizFrame = this.getView().byId("idcolumn");
+			oVizFrame.removeAllFeeds();
+			oVizFrame.destroyDataset();
+			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+
+				dimensions : [{
+					name : 'Hour',
+					value : "{HOUR}"}],
+
+				measures : [{
+					name : 'Value',
+					value : "{VALUE}"}],
+
+				data :{
+					path :"/rs0"
+				   }
+				 });
+				
+		   oVizFrame.setDataset(oDataset);
+		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setVizType('column'); //Type of the viz frame
+		   // set Viz Properties
+
+		  oVizFrame.setVizProperties({
+                plotArea: {
+                    dataLabel: {
+                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+
+                        visible: false
+                    }
+                },
+                valueAxis: {
+
+                    title: {
+                        visible: false
+                    }
+                },
+                categoryAxis: {
+                    title: {
+                        visible: false
+                    }
+                },
+                title: {
+                    visible: false,
+                    text: 'Year'
+                }
+            });
+
+		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "valueAxis",
+		   		'type' : "Measure",
+		   		'values' : ["Value"]
+		   	}),
+
+	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "categoryAxis",
+		   		'type' : "Dimension",
+		   		'values' : ["Hour"]
+		   	});
+
+	     oVizFrame.addFeed(feedValueAxis);
+	     oVizFrame.addFeed(feedCategoryAxis);
 
 		},
 
 		OnHandleSwitchTab : function(oEvent){
+			var that = this;
+			var oSource;
+			if (oEvent === undefined)
+			{
+				oSource = that.getView().byId("sgtbtn");
+			}
+			else {
+			    oSource = oEvent.getSource();
+			}
+            
+            var oChartContainer = that.getView().byId("chartContainer");
+            var oDatePicker = that.getView().byId("idDatePicker");
+            var oModel = this.getView().getModel("VincaTestDataModel");
+            var sUrl;
+            var id = 1;
+            var sClass = "el";
+            //var year = 2017;
+           // var month = 1;
+            var date = oDatePicker.getValue();
+            var year = date.split(".")[2];
+            var month = date.split(".")[1];
+            var day = date.split(".")[0];
 
+            // change container title and call different xsjs 
+            switch (oSource.getSelectedKey()) {
+                case "month":
+                        // VincaTestMonth
+                        //set correct url
+                        sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
+                        //set chart container title to corresponding selection
+                        oChartContainer.setTitle(month+"."+year);
+                        //call xsjs 
+                        
+						oModel.refresh();
+                        that.OnLoadMonth(sUrl);
+                    break;
+                case "year":
+
+                        //this.OnLoadYear();
+                        //set correct url
+                        sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
+
+                        //set chart container title to corresponding selection
+                        oChartContainer.setTitle(year);
+                        //call xsjs 
+                        oModel.refresh();
+                        that.OnLoadYear(sUrl);
+                    break;
+
+                case "day":
+                        // VincaTestDay
+                        //set correct url
+                        sUrl = "VincaTestDay.xsjs?id=" + id + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
+
+                        //set chart container title to corresponding selection
+                        oChartContainer.setTitle(day+"."+month+"."+year);
+                        //call xsjs 
+                       // oModel.refresh();
+                        that.OnLoadDay(sUrl);
+                    break;
+            }
 		},
 
 		/*onAfterRendering: function() {
@@ -152,6 +512,11 @@ sap.ui.define([
 				}
 			}
 		},*/
+
+		onChangeDate : function(){
+			this.OnHandleSwitchTab();
+
+		},
  
 		onPressNavToDetail : function(oEvent) {
 			this.getSplitContObj().to(this.createId("detailDetail"));
@@ -190,9 +555,6 @@ sap.ui.define([
 			return result;
 		}
 
-
-
- 
 	});
 	
 });

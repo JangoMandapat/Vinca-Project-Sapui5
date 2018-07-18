@@ -179,11 +179,11 @@ sap.ui.define([
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
-					name : 'Month',
+					name : 'Monat',
 					value : "{MONTH}"}],
 
 				measures : [{
-					name : 'Value',
+					name : 'Wert',
 					value : "{VALUE}"}],
 
 				data :{
@@ -224,13 +224,13 @@ sap.ui.define([
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
-		   		'values' : ["Value"]
+		   		'values' : ["Wert"]
 		   	}),
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
-		   		'values' : ["Month"]
+		   		'values' : ["Monat"]
 		   	});
 
 	     oVizFrame.addFeed(feedValueAxis);
@@ -275,11 +275,11 @@ sap.ui.define([
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
-					name : 'Day',
+					name : 'Tag',
 					value : "{DAY}"}],
 
 				measures : [{
-					name : 'Value',
+					name : 'Wert',
 					value : "{VALUE}"}],
 
 				data :{
@@ -320,13 +320,13 @@ sap.ui.define([
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
-		   		'values' : ["Value"]
+		   		'values' : ["Wert"]
 		   	}),
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
-		   		'values' : ["Day"]
+		   		'values' : ["Tag"]
 		   	});
 
 	     oVizFrame.addFeed(feedValueAxis);
@@ -371,11 +371,11 @@ sap.ui.define([
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
-					name : 'Hour',
+					name : 'Stunde',
 					value : "{HOUR}"}],
 
 				measures : [{
-					name : 'Value',
+					name : 'Wert',
 					value : "{VALUE}"}],
 
 				data :{
@@ -416,13 +416,13 @@ sap.ui.define([
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
-		   		'values' : ["Value"]
+		   		'values' : ["Wert"]
 		   	}),
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
-		   		'values' : ["Hour"]
+		   		'values' : ["Stunde"]
 		   	});
 
 	     oVizFrame.addFeed(feedValueAxis);
@@ -432,7 +432,15 @@ sap.ui.define([
 
 		OnHandleSwitchTab : function(oEvent){
 			var that = this;
-            var oSource = oEvent.getSource();
+			var oSource;
+			if (oEvent === undefined)
+			{
+				oSource = that.getView().byId("sgtbtn");
+			}
+			else {
+			    oSource = oEvent.getSource();
+			}
+            
             var oChartContainer = that.getView().byId("chartContainer");
             var oDatePicker = that.getView().byId("idDatePicker");
             var oModel = this.getView().getModel("VincaTestDataModel");
@@ -504,6 +512,11 @@ sap.ui.define([
 				}
 			}
 		},*/
+
+		onChangeDate : function(){
+			this.OnHandleSwitchTab();
+
+		},
  
 		onPressNavToDetail : function(oEvent) {
 			this.getSplitContObj().to(this.createId("detailDetail"));

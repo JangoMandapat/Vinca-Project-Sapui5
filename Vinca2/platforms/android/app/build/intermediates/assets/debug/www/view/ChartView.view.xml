@@ -12,24 +12,27 @@
 	<SplitContainer id="SplitCont" initialDetail="detail" initialMaster="master">
 		<detailPages>
 			<Page id="detail" title="Dein Stromverbrauch" class="sapUiStdPage">
-			<subHeader>
-			<Toolbar>		
-				<DatePicker id="idDatePicker" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="DD/MM/YYYY" />
-			</Toolbar>
-			</subHeader>
+				<headerContent>
+					<!-- <Text text="Sample"/> -->
+				</headerContent>
+				<subHeader>
+					<Toolbar>		
+						<DatePicker id="idDatePicker" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY" />
+					</Toolbar>
+				</subHeader>
 			<content>
 				<Toolbar>	
-			<SegmentedButton selectedKey="Year" select="OnHandleSwitchTab">
+			<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab">
 					<items>
-						<SegmentedButtonItem text="Year" key="Year" />
-						<SegmentedButtonItem text="Month" key="month"/>
-						<SegmentedButtonItem text="Day" key="Day"/>
+						<SegmentedButtonItem text="Jahr" key="year" />
+						<SegmentedButtonItem text="Monat" key="month"/>
+						<SegmentedButtonItem text="Tag" key="day"/>
 					</items>
 				</SegmentedButton>
 							</Toolbar>
 
 				<suite:ChartContainer 
-					id="chartcontainer"
+					id="chartContainer"
 					showFullScreen="true"
 				    showPersonalization="false"
 					autoAdjustHeight="false"
