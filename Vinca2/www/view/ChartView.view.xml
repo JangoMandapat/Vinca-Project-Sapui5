@@ -12,11 +12,9 @@
 	<SplitContainer id="SplitCont" initialDetail="detail" initialMaster="master">
 		<detailPages>
 			<Page id="detail" title="Dein Stromverbrauch" class="SplitContainer" enableScrolling="false" > 
+
 				<!-- class="SplitContainer"-->
-
 				<headerContent ></headerContent>
-
-
 				<subHeader>
 					<Toolbar>
 						<DatePicker id="idDatePicker" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
@@ -31,33 +29,40 @@
 					</items>
 				</SegmentedButton>
 				</Toolbar>
-
 				<content >
+				
 				<ScrollContainer
-		height="100%"
-		width="100%"
-		horizontal="true"
-		vertical="true"
-		focusable="true"> 
+					height="100%"
+					width="100%"
+					horizontal="true"
+					vertical="true"
+					focusable="true"> 
 				<suite:ChartContainer 
 					id="chartContainer"
 					showFullScreen="true"
 				    showPersonalization="false"
 					autoAdjustHeight="false"
 					showLegend="true">
-
+				 
 				 <suite:content>
 						<suite:ChartContainerContent>
 						<suite:content>
-							<viz:VizFrame xmlns="sap.viz" id="idcolumn">
+							
+							<viz:VizFrame 
+								xmlns="sap.viz" 
+								id="idcolumn" 
+								height="300px" 
+                    			width="300px">
 							</viz:VizFrame>
+							
 						</suite:content>
-					</suite:ChartContainerContent>
+						</suite:ChartContainerContent>
 				</suite:content>
 				</suite:ChartContainer>
-			</ScrollContainer> 
-					</content>
-		
+				</ScrollContainer> 
+				
+				</content>
+				
 			</Page>
 			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
@@ -93,7 +98,7 @@
 				</content>
 			</Page> -->
 		</detailPages>
-		<masterPages>
+		<!-- <masterPages>
 			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage">
 				<content>
 					<List>
@@ -115,7 +120,7 @@
 					</List>
 				</content>
 			</Page>
-		</masterPages>
+		</masterPages> -->
 	</SplitContainer>		
 		
 	

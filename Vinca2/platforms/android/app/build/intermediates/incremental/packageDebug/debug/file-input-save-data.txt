@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jul 18 19:03:57 SGT 2018
+#Wed Jul 18 21:21:43 SGT 2018
 1863.set=ASSET
 1117.file=C\:\\xampp\\htdocs\\Vinca2\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\resources\\sap\\chart\\i18n\\i18n_ru.properties
 1391.set=ASSET

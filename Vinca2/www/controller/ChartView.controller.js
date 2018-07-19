@@ -86,11 +86,11 @@ sap.ui.define([
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
-					name : 'Month',
+					name : 'Monat',
 					value : "{MONTH}"}],
 
 				measures : [{
-					name : 'Value',
+					name : 'Wert',
 					value : "{VALUE}"}],
 
 				data :{
@@ -131,13 +131,13 @@ sap.ui.define([
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
-		   		'values' : ["Value"]
+		   		'values' : ["Wert"]
 		   	}),
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
-		   		'values' : ["Month"]
+		   		'values' : ["Monat"]
 		   	});
 
 	     oVizFrame.addFeed(feedValueAxis);
