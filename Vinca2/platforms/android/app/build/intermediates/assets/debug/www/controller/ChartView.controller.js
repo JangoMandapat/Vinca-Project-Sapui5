@@ -112,11 +112,13 @@ sap.ui.define([
                     }
                 },
                 valueAxis: {
-
-                    title: {
-                        visible: false
-                    }
-                },
+					label: {
+						formatString: null
+					},
+					title: {
+						visible: false
+					}
+				},
                 categoryAxis: {
                     title: {
                         visible: false
@@ -205,11 +207,13 @@ sap.ui.define([
                     }
                 },
                 valueAxis: {
-
-                    title: {
-                        visible: false
-                    }
-                },
+					label: {
+						formatString: null
+					},
+					title: {
+						visible: false
+					}
+				},
                 categoryAxis: {
                     title: {
                         visible: false
@@ -301,11 +305,13 @@ sap.ui.define([
                     }
                 },
                 valueAxis: {
-
-                    title: {
-                        visible: false
-                    }
-                },
+					label: {
+						formatString: null
+					},
+					title: {
+						visible: false
+					}
+				},
                 categoryAxis: {
                     title: {
                         visible: false
@@ -389,29 +395,29 @@ sap.ui.define([
 		   // set Viz Properties
 
 		  oVizFrame.setVizProperties({
-                plotArea: {
-                    dataLabel: {
-                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
-
-                        visible: false
-                    }
-                },
-                valueAxis: {
-
-                    title: {
-                        visible: false
-                    }
-                },
-                categoryAxis: {
-                    title: {
-                        visible: false
-                    }
-                },
-                title: {
-                    visible: false,
-                    text: 'Year'
-                }
-            });
+				plotArea: {
+					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+						visible: false
+					}
+				},
+				valueAxis: {
+					label: {
+						formatString: null
+					},
+					title: {
+						visible: false
+					}
+				},
+				categoryAxis: {
+					title: {
+						visible: false
+					}
+				},
+				title: {
+					visible: false,
+					text: 'Year'
+				}
+			});
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -456,12 +462,15 @@ sap.ui.define([
 
             // change container title and call different xsjs 
             switch (oSource.getSelectedKey()) {
-                case "month":
+                   case "month":
                         // VincaTestMonth
                         //set correct url
                         sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
                         //set chart container title to corresponding selection
-                        oChartContainer.setTitle(month+"."+year);
+                        
+                      	var sdate = moment(month, "MM").format('MMM')
+
+                        oChartContainer.setTitle(sdate+" "+year);
                         //call xsjs 
                         
 						oModel.refresh();
