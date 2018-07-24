@@ -67,7 +67,7 @@
 				<tileContent>
 					<TileContent unit="Unit:" footer="€" ><!--  -->
 						<content>
-							<NumericContent value="1762" icon="sap-icon://bar-chart"/>
+							<NumericContent value="{rs0/COSTS}" icon="sap-icon://bar-chart"/>
 						</content>
 					</TileContent>
 				</tileContent>

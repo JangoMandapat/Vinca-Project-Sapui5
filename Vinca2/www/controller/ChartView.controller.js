@@ -22,6 +22,37 @@ sap.ui.define([
 		
 		},
 
+		fnGetTotalYearCost : function(cUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaCostDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+			$.ajax({
+                        url: sHost+sUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaCostDataModel.setData(data);
+                            oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		
+		},
+
 		fnLoadDefaultValue: function(){
 			var oHtml;
 			var that = this;
@@ -458,7 +489,9 @@ sap.ui.define([
             var oDatePicker = that.getView().byId("idDatePicker");
             var oModel = this.getView().getModel("VincaTestDataModel");
             var sUrl;
+            var cUrl;
             var id = 1;
+            var cid = 1;
             var sClass = "el";
             //var year = 2017;
            // var month = 1;
@@ -473,6 +506,7 @@ sap.ui.define([
                         // VincaTestMonth
                         //set correct url
                         sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
+
                         //set chart container title to corresponding selection
                         
                       	var sdate = moment(month, "MM").format('MMM')
@@ -488,11 +522,11 @@ sap.ui.define([
                         //this.OnLoadYear();
                         //set correct url
                         sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
-
+                        cUrl = "VincaYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
                         //set chart container title to corresponding selection
                         oChartContainer.setTitle(year);
                         //call xsjs 
-                        oModel.refresh();
+ 						that.fnGetTotalYearCost(cUrl);
                         that.OnLoadYear(sUrl);
                     break;
 
