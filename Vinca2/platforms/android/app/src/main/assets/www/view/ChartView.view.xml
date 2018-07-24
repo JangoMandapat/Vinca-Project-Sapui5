@@ -32,7 +32,7 @@
 				<content >
 				
 				<ScrollContainer
-					height="100%"
+					height="330px"
 					width="100%"
 					horizontal="true"
 					vertical="true"
@@ -52,19 +52,28 @@
 								xmlns="sap.viz" 
 								id="idcolumn" 
 								height="300px" 
-                    			width="300px">
+                    			width="30px">
 							</viz:VizFrame>
-							
 						</suite:content>
 						</suite:ChartContainerContent>
+
 				</suite:content>
 				</suite:ChartContainer>
-				</ScrollContainer> 
-				
+				</ScrollContainer> 			
 				</content>
-				
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" frameType="OneByOne"
+					press="press">
+				<tileContent>
+					<TileContent unit="Unit" footer="Footer Text">
+						<content>
+							<NumericContent value="1762" icon="sap-icon://line-charts"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+
 			</Page>
-			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
+			<!-- <Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
@@ -80,7 +89,7 @@
 						</RadioButtonGroup>
 					</VBox>
 				</content>
-			</Page>
+			</Page> -->
 			<!-- <Page id="detail2" title="Detail 3 Page" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
  

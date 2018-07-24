@@ -400,6 +400,13 @@ sap.ui.define([
 						visible: false
 					}
 				},
+				/*yAxis:{ 
+               		 scale:{ 
+                    	fixedRange:true, 
+                    	minValue:0, 
+                    	maxValue:1
+                    }
+                },*/
 				valueAxis: {
 					label: {
 						formatString: null
