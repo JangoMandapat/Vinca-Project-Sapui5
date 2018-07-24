@@ -62,12 +62,12 @@
 				</ScrollContainer> 			
 				</content>
 
-				<GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="Expenses" frameType="OneByOne"
+				<GenericTile id="Stromkosten" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="Expenses" frameType="OneByOne"
 					press="press">
 				<tileContent>
 					<TileContent unit="Unit:" footer="€" ><!--  -->
 						<content>
-							<NumericContent value="{rs0/COSTS}" icon="sap-icon://bar-chart"/>
+							<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" icon="sap-icon://bar-chart"/>
 						</content>
 					</TileContent>
 				</tileContent>

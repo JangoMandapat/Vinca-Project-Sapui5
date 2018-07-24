@@ -18,7 +18,7 @@ sap.ui.define([
 		onInit: function(){
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
 			this.fnLoadDefaultValue();
-
+			
 		
 		},
 
@@ -31,13 +31,15 @@ sap.ui.define([
 
 			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
 			$.ajax({
-                        url: sHost+sUrl,
+                        url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
   							VincaCostDataModel.setData(data);
+
                             oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
@@ -522,7 +524,7 @@ sap.ui.define([
                         //this.OnLoadYear();
                         //set correct url
                         sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
-                        cUrl = "VincaYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
+                        cUrl = "GetYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
                         //set chart container title to corresponding selection
                         oChartContainer.setTitle(year);
                         //call xsjs 
