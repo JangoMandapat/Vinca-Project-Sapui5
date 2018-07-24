@@ -61,16 +61,28 @@
 				</suite:ChartContainer>
 				</ScrollContainer> 			
 				</content>
-				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" frameType="OneByOne"
+
+				<GenericTile id="Stromkosten" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="Expenses" frameType="OneByOne"
 					press="press">
 				<tileContent>
-					<TileContent unit="Unit" footer="Footer Text">
+					<TileContent unit="Unit:" footer="€" ><!--  -->
 						<content>
-							<NumericContent value="1762" icon="sap-icon://line-charts"/>
+							<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" icon="sap-icon://bar-chart"/>
 						</content>
 					</TileContent>
 				</tileContent>
 				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromverbrauch" subheader="Expenses" frameType="OneByOne"
+					press="press">
+				<tileContent>
+					<TileContent unit="Unit:" footer="kWh" ><!--  -->
+						<content>
+							<NumericContent value="1762" icon="sap-icon://bar-chart"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+
 
 			</Page>
 			<!-- <Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
