@@ -29,10 +29,10 @@
 					</items>
 				</SegmentedButton>
 				</Toolbar>
-				<content >
+				<content>
 				
 				<ScrollContainer
-					height="330px"
+					height="100%"
 					width="100%"
 					horizontal="true"
 					vertical="true"
@@ -59,30 +59,60 @@
 
 				</suite:content>
 				</suite:ChartContainer>
-				</ScrollContainer> 			
+				<!-- </ScrollContainer>  -->			
+				<!-- </content>
+ -->
+				<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
+				<GenericTile id="Stromkosten"  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="OneByOne"
+					press="press">
+					
+				<tileContent>
+					<TileContent >
+						<content >
+							<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" scale="€" icon="sap-icon://customer-financial-fact-sheet"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+				<GenericTile  header="Stromverbrauch" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" subheader="" frameType="OneByOne"
+					press="press">
+				 
+				<tileContent>
+					<TileContent >
+						<content>
+							<NumericContent width="100%" truncateValueTo="5" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb" scale="kWh"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+
+				<!-- <GenericTile id=""  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="TwoByOne"
+					press="press">
+					
+				<tileContent>
+					<TileContent >
+						<content >
+							<NumericContent width="100%" truncateValueTo="14" value=" € {VincaCostDataModel>/rs0/0/COSTS}"  icon="sap-icon://customer-financial-fact-sheet"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+
+				<GenericTile  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromverbrauch" subheader="" frameType="TwoByOne"
+					press="press">
+				
+				<tileContent>
+					<TileContent >
+						<content>
+							<NumericContent width="100%" truncateValueTo="14" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb"/>
+						</content>
+					</TileContent>
+				</tileContent>
+				</GenericTile>
+ -->
+
+				</ScrollContainer>
 				</content>
-
-				<GenericTile id="Stromkosten" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="Expenses" frameType="OneByOne"
-					press="press">
-				<tileContent>
-					<TileContent unit="Unit:" footer="€" ><!--  -->
-						<content>
-							<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" icon="sap-icon://bar-chart"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
-				<GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromverbrauch" subheader="Expenses" frameType="OneByOne"
-					press="press">
-				<tileContent>
-					<TileContent unit="Unit:" footer="kWh" ><!--  -->
-						<content>
-							<NumericContent value="1762" icon="sap-icon://bar-chart"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
-
 
 			</Page>
 			<!-- <Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
@@ -142,7 +172,7 @@
 				</content>
 			</Page>
 		</masterPages> -->
-	</SplitContainer>		
+	</SplitContainer>	
 		
 	
 </core:View>
