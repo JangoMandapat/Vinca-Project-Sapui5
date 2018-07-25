@@ -74,7 +74,7 @@
 					</TileContent>
 				</tileContent>
 				</GenericTile>
-				<GenericTile  header="Stromverbrauchh" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" subheader="" frameType="OneByOne"
+				<GenericTile  header="Stromverbrauch" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" subheader="" frameType="OneByOne"
 					press="press">
 				 
 				<tileContent>
