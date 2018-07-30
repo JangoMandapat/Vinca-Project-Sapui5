@@ -1,5 +1,5 @@
 <core:View 
-	controllerName="Vinca.controller.ChartView" 
+	controllerName="Vinca.controller.ChartView"	
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:suite="sap.suite.ui.commons"
 	xmlns="sap.m"
@@ -13,107 +13,123 @@
 		<detailPages>
 			<Page id="detail" title="Dein Stromverbrauch" class="SplitContainer" enableScrolling="false" > 
 
-				<!-- class="SplitContainer"-->
-				<headerContent ></headerContent>
 				<subHeader>
 					<Toolbar>
 						<DatePicker id="idDatePicker" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
 					</Toolbar>
 				</subHeader>
 				<Toolbar>	
-				<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab">
-					<items>
-						<SegmentedButtonItem text="Jahr" key="year" />
-						<SegmentedButtonItem text="Monat" key="month"/>
-						<SegmentedButtonItem text="Tag" key="day"/>
-					</items>
-				</SegmentedButton>
+					<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab">
+						<items>
+							<SegmentedButtonItem text="Jahr" key="year" />
+							<SegmentedButtonItem text="Monat" key="month"/>
+							<SegmentedButtonItem text="Tag" key="day"/>
+						</items>
+					</SegmentedButton>
 				</Toolbar>
+
 				<content>
-				
-				<ScrollContainer
-					height="100%"
-					width="100%"
-					horizontal="true"
-					vertical="true"
-					focusable="true"> 
-				<suite:ChartContainer 
-					id="chartContainer"
-					showFullScreen="true"
-				    showPersonalization="false"
-					autoAdjustHeight="false"
-					showLegend="true">
-				 
-				 <suite:content>
-						<suite:ChartContainerContent>
-						<suite:content>
+					<ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="true"
+						vertical="true"
+						focusable="true"> 
+						<suite:ChartContainer 
+							id="chartContainer"
+							showFullScreen="true"
+						    showPersonalization="false"
+							autoAdjustHeight="false"
+							showLegend="true">
+						 
+							 <suite:content>
+									<suite:ChartContainerContent>
+									<suite:content>
+										
+										<viz:VizFrame 
+											xmlns="sap.viz" 
+											id="idcolumn" 
+											height="300px" 
+			                    			width="30px">
+										</viz:VizFrame>
+									</suite:content>
+									</suite:ChartContainerContent>
+
+							</suite:content>
+						</suite:ChartContainer>
+						<!-- </ScrollContainer>  -->			
+						<!-- </content>
+		 -->
+						<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
+
+						<layout:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+							<layout:content>
+								<!-- Third / Half width items -->
+								<ObjectListItem id="Stromkosten"
+									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
+									intro="Stromkosten"
+									icon="sap-icon://customer-financial-fact-sheet" >
+								</ObjectListItem>
+								<ObjectListItem id="Stromverbrauch"
+									title="{VincaCostDataModel>/rs0/0/TOTAL} Kwh"
+									intro="Stromverbrauch"
+									icon="sap-icon://lightbulb" >
+									<layoutData>
+										<layout:GridData span="L4 M6 S6" />
+									</layoutData>
+								</ObjectListItem>
+							</layout:content>
+						</layout:Grid>
+						<!-- <GenericTile id="Stromkosten"  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="OneByOne"
+							press="press">
 							
-							<viz:VizFrame 
-								xmlns="sap.viz" 
-								id="idcolumn" 
-								height="300px" 
-                    			width="30px">
-							</viz:VizFrame>
-						</suite:content>
-						</suite:ChartContainerContent>
+						<tileContent>
+							<TileContent >
+								<content >
+									<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" scale="€" icon="sap-icon://customer-financial-fact-sheet"/>
+								</content>
+							</TileContent>
+						</tileContent>
+						</GenericTile>
+						<GenericTile  header="Stromverbrauch" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" subheader="" frameType="OneByOne"
+							press="press">
+						 
+						<tileContent>
+							<TileContent >
+								<content>
+									<NumericContent width="100%" truncateValueTo="5" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb" scale="kWh"/>
+								</content>
+							</TileContent>
+						</tileContent>
+						</GenericTile>
+		 -->
+						<!-- <GenericTile id=""  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="TwoByOne"
+							press="press">
+							
+						<tileContent>
+							<TileContent >
+								<content >
+									<NumericContent width="100%" truncateValueTo="14" value=" € {VincaCostDataModel>/rs0/0/COSTS}"  icon="sap-icon://customer-financial-fact-sheet"/>
+								</content>
+							</TileContent>
+						</tileContent>
+						</GenericTile>
 
-				</suite:content>
-				</suite:ChartContainer>
-				<!-- </ScrollContainer>  -->			
-				<!-- </content>
- -->
-				<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
-				<GenericTile id="Stromkosten"  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="OneByOne"
-					press="press">
-					
-				<tileContent>
-					<TileContent >
-						<content >
-							<NumericContent value="{VincaCostDataModel>/rs0/0/COSTS}" scale="€" icon="sap-icon://customer-financial-fact-sheet"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
-				<GenericTile  header="Stromverbrauch" class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" subheader="" frameType="OneByOne"
-					press="press">
-				 
-				<tileContent>
-					<TileContent >
-						<content>
-							<NumericContent width="100%" truncateValueTo="5" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb" scale="kWh"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
+						<GenericTile  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromverbrauch" subheader="" frameType="TwoByOne"
+							press="press">
+						
+						<tileContent>
+							<TileContent >
+								<content>
+									<NumericContent width="100%" truncateValueTo="14" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb"/>
+								</content>
+							</TileContent>
+						</tileContent>
+						</GenericTile>
+		 -->
 
-				<!-- <GenericTile id=""  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="TwoByOne"
-					press="press">
-					
-				<tileContent>
-					<TileContent >
-						<content >
-							<NumericContent width="100%" truncateValueTo="14" value=" € {VincaCostDataModel>/rs0/0/COSTS}"  icon="sap-icon://customer-financial-fact-sheet"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
-
-				<GenericTile  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromverbrauch" subheader="" frameType="TwoByOne"
-					press="press">
-				
-				<tileContent>
-					<TileContent >
-						<content>
-							<NumericContent width="100%" truncateValueTo="14" value="{VincaCostDataModel>/rs0/0/TOTAL} Kwh" icon="sap-icon://lightbulb"/>
-						</content>
-					</TileContent>
-				</tileContent>
-				</GenericTile>
- -->
-
-				</ScrollContainer>
+					</ScrollContainer>
 				</content>
-
 			</Page>
 			<!-- <Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
 				  navButtonText="Back" navButtonPress="onPressDetailBack">
