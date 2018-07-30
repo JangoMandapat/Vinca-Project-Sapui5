@@ -14,7 +14,7 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("Vinca.controller.ChartView", {
-
+		
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));

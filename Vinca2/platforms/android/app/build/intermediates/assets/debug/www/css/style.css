@@ -1,5 +1,9 @@
-/* Enter your custom styles here */
+/* Enter your custom styles here d*/
 
-.sapMNCValue {
-	font-size: 1rem;
+.sapMText .sapMObjLTitle {
+	font-size: .5; 
+}
+
+.gridlayout .sapMLIB.sapMObjLItem {
+	padding: 1px !important;
 }

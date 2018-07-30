@@ -9,13 +9,16 @@
 	xmlns:core="sap.ui.core"
 	displayBlock="true"
 	>
+	<HeaderContainer> 
+				<Button icon="sap-icon://menu"/> 
+			</HeaderContainer>
 	<SplitContainer id="SplitCont" initialDetail="detail" initialMaster="master">
 		<detailPages>
-			<Page id="detail"  showHeader="false" class="SplitContainer" enableScrolling="false" > 
 
+			<Page id="detail"  showHeader="false" class="SplitContainer" enableScrolling="false" > 		
 				<subHeader>
 					<Toolbar>
-						<DatePicker id="idDatePicker" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
+						<DatePicker id="idDatePicker" class="sapUiSmallMarginTop" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
 					</Toolbar>
 				</subHeader>
 				<Toolbar>	
@@ -49,7 +52,7 @@
 										<viz:VizFrame 
 											xmlns="sap.viz" 
 											id="idcolumn" 
-											height="225spx" 
+											height="250px" 
 			                    			width="30px">
 										</viz:VizFrame>
 									</suite:content>
@@ -61,14 +64,16 @@
 						<!-- </content>
 		 -->
 						<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
+						
 
-						<layout:Grid defaultSpan="L1 M6 S6" class="sapUiSmallMarginTop">
+						<layout:Grid defaultSpan="L1 M6 S6" class="gridlayout sapUiTinyMarginTop">
 							<layout:content>
 								<!-- Third / Half width items -->
 								<ObjectListItem id="Stromkosten"
 									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
 									intro="Stromkosten"
-									icon="sap-icon://customer-financial-fact-sheet" >
+									icon="sap-icon://customer-financial-fact-sheet"
+									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
 									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
@@ -80,11 +85,13 @@
 									intro="Stromverbrauch"
 									icon="sap-icon://lightbulb" >
 									<layoutData>
-										<layout:GridData span="L6 M12 S12" />
+										<layout:GridData span="L6 M12 S12" class="sapUiNoMarginTop" />
 									</layoutData>
 								</ObjectListItem>
 							</layout:content>
 						</layout:Grid>
+
+						
 						<!-- <GenericTile id="Stromkosten"  class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" header="Stromkosten" subheader="" frameType="OneByOne"
 							press="press">
 							

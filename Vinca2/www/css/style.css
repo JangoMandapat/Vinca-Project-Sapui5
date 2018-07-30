@@ -3,3 +3,7 @@
 .sapMText .sapMObjLTitle {
 	font-size: .5; 
 }
+
+.gridlayout .sapMLIB.sapMObjLItem {
+	padding: 1px !important;
+}
