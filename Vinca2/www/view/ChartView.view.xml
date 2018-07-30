@@ -11,7 +11,7 @@
 	>
 	<SplitContainer id="SplitCont" initialDetail="detail" initialMaster="master">
 		<detailPages>
-			<Page id="detail" title="Dein Stromverbrauch" class="SplitContainer" enableScrolling="false" > 
+			<Page id="detail"  showHeader="false" class="SplitContainer" enableScrolling="false" > 
 
 				<subHeader>
 					<Toolbar>
@@ -62,7 +62,7 @@
 		 -->
 						<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
 
-						<layout:Grid defaultSpan="L3 M6 S6" class="sapUiSmallMarginTop">
+						<layout:Grid defaultSpan="L1 M6 S6" class="sapUiSmallMarginTop">
 							<layout:content>
 								<!-- Third / Half width items -->
 								<ObjectListItem id="Stromkosten"
@@ -80,7 +80,7 @@
 									intro="Stromverbrauch"
 									icon="sap-icon://lightbulb" >
 									<layoutData>
-										<layout:GridData span="L3 M6 S6" />
+										<layout:GridData span="L1 M6 S6" />
 									</layoutData>
 								</ObjectListItem>
 							</layout:content>
