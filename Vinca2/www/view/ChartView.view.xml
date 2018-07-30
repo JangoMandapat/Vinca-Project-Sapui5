@@ -49,7 +49,7 @@
 										<viz:VizFrame 
 											xmlns="sap.viz" 
 											id="idcolumn" 
-											height="200px" 
+											height="225spx" 
 			                    			width="30px">
 										</viz:VizFrame>
 									</suite:content>
