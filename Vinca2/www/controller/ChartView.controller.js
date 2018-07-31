@@ -20,10 +20,46 @@ sap.ui.define([
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
 			this.fnLoadDefaultValue();
 			this.fnLoadDefaultValue2();
-			
+			this.fnGetDefaultAbschlagYear();
 			
 		},
 
+
+
+
+		fnGetDefaultAbschlagYear : function(){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaAbschlagDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+			var id = 1;
+			var aUrl = "GetAbschlagYear.xsjs?id=" + id;
+			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			$.ajax({
+                        url: sHost+aUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaAbschlagDataModel.setData(data);
+
+                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		
+		},
 		//Month cost
 		fnGetTotalMonthCost : function(cUrl){
 			var oHtml;
@@ -128,7 +164,8 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();		
+			var VincaTestDataModel = new JSONModel();	
+			var oChartContainer = that.getView().byId("chartContainer");	
 			var oDatePicker = that.getView().byId("idDatePicker");
 			var id = 1;
 			var sClass= "el";
@@ -248,6 +285,7 @@ sap.ui.define([
 
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
+	     oChartContainer.setTitle(year);
 		},
 
 		fnLoadDefaultValue2: function(){
@@ -294,6 +332,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			
 		},
 
 		OnLoadYear: function(sUrl){

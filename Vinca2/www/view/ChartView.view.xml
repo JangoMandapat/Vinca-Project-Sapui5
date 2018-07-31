@@ -17,18 +17,19 @@
 			</headerContent>		
 				<subHeader>
 					<Toolbar>
-						<DatePicker id="idDatePicker" class="sapUiSmallMarginTop" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
-					</Toolbar>
-				</subHeader>
-				<Toolbar>	
-					<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab">
+						<DatePicker id="idDatePicker" class="sapUiSmallMarginTop sapUiSizeCompact" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
+						
+						<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab" class="sapUiSizeCompact">
 						<items>
 							<SegmentedButtonItem text="Jahr" key="year" />
 							<SegmentedButtonItem text="Monat" key="month"/>
 							<SegmentedButtonItem text="Tag" key="day"/>
 						</items>
 					</SegmentedButton>
-				</Toolbar>
+						
+					</Toolbar>
+				</subHeader>
+				
 
 				<content>
 					<ScrollContainer
@@ -75,12 +76,12 @@
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
-									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
+									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL*12} €	"
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
 								<ObjectListItem id="Stromverbrauch"
-									title="{VincaCostDataModel>/rs0/0/TOTAL} Kwh"
+									title="{VincaCostDataModel>/rs0/0/TOTAL} kWh"
 									intro="Stromverbrauch"
 									icon="sap-icon://lightbulb" >
 									<layoutData>

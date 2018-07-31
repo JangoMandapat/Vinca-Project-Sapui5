@@ -128,7 +128,8 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();		
+			var VincaTestDataModel = new JSONModel();	
+			var oChartContainer = that.getView().byId("chartContainer");	
 			var oDatePicker = that.getView().byId("idDatePicker");
 			var id = 1;
 			var sClass= "el";
@@ -248,6 +249,7 @@ sap.ui.define([
 
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
+	     oChartContainer.setTitle(year);
 		},
 
 		fnLoadDefaultValue2: function(){
@@ -294,6 +296,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			
 		},
 
 		OnLoadYear: function(sUrl){
