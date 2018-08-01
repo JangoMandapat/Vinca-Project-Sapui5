@@ -13,6 +13,10 @@ sap.ui.define([
 
 		fnNavigateToChart : function(){
 			this.getRouter().navTo("chartview");
+		},
+
+		fnNavigateToMaster : function(){
+			this.getRouter().navTo("masterdata");
 		}
 	});
 });

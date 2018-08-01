@@ -20,9 +20,189 @@ sap.ui.define([
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
 			this.fnLoadDefaultValue();
 			this.fnLoadDefaultValue2();
-			
+			this.fnGetDefaultAbschlagYear();
 			
 		},
+
+		getRouter: function() {
+			return this.getOwnerComponent().getRouter();
+		},
+
+
+		fnNavigateToMaster : function(){
+			this.getRouter().navTo("masterdata");
+		},
+
+		handleMenuItemPress: function(oEvent) {
+			if (oEvent.getParameter("item").getSubmenu()) {
+				return;
+			}
+
+			var msg = "";
+			if (oEvent.getParameter("item").getMetadata().getName() == "sap.ui.unified.MenuTextFieldItem") {
+				msg =  oEvent.getParameter("item").getValue();
+			} else {
+				msg = oEvent.getParameter("item").getText();
+				if(msg===">Dein Stromverbrauch"){
+					this.fnNavigateToChart();
+				}else if (msg===">Stammdaten"){
+					this.fnNavigateToMaster();
+				}
+			}
+
+			//MessageToast.show(msg);
+		},
+
+		handlePressOpenMenu: function(oEvent) {
+			var oButton = oEvent.getSource();
+
+			// create menu only once
+			if (!this._menu) {
+				this._menu = sap.ui.xmlfragment(
+					"Vinca.view.fragment.menu",
+					this
+				);
+				this.getView().addDependent(this._menu);
+			}
+
+			var eDock = sap.ui.core.Popup.Dock;
+			this._menu.open(this._bKeyboard, oButton, eDock.BeginTop, eDock.BeginBottom, oButton);
+		},
+
+
+
+		fnGetDefaultAbschlagYear : function(){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaAbschlagDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+			var id = 1;
+			var aUrl = "GetAbschlagYear.xsjs?id=" + id;
+			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			$.ajax({
+                        url: sHost+aUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaAbschlagDataModel.setData(data);
+
+                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		
+		},
+
+		// for Abschlag
+		fnGetAbschlagYearCost : function(aUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaAbschlagDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			$.ajax({
+                        url: sHost+aUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaAbschlagDataModel.setData(data);
+
+                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                           
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		},
+
+		fnGetAbschlagDayCost : function(aUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaAbschlagDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			$.ajax({
+                        url: sHost+aUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaAbschlagDataModel.setData(data);
+
+                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		},
+
+		fnGetAbschlagMonthCost : function(aUrl){
+			var oHtml;
+			var that = this;
+			var oView = this.getView();
+			var VincaAbschlagDataModel = new JSONModel();
+			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+
+			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			$.ajax({
+                        url: sHost+aUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaAbschlagDataModel.setData(data);
+
+                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		},
+
+		// end of for Abschlag data call
+
 
 		//Month cost
 		fnGetTotalMonthCost : function(cUrl){
@@ -612,6 +792,7 @@ sap.ui.define([
             var oModel = this.getView().getModel("VincaTestDataModel");
             var sUrl;
             var cUrl;
+            var aUrl;
             var id = 1;
             var cid = 1;
             var sClass = "el";
@@ -627,6 +808,7 @@ sap.ui.define([
                    case "month":
                         // VincaTestMonth
                         //set correct url
+                        aUrl = "GetAbschlagMonth.xsjs?id=" + id;
                         sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
                         cUrl = "GetMonthCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year + "&month=" + month +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -638,11 +820,13 @@ sap.ui.define([
 
                         that.fnGetTotalMonthCost(cUrl);
                         that.OnLoadMonth(sUrl);
+                        that.fnGetAbschlagMonthCost(aUrl);
                     break;
                 case "year":
 
                         //this.OnLoadYear();
                         //set correct url
+                        aUrl = "GetAbschlagYear.xsjs?id=" + id;
                         sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
                         cUrl = "GetYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -650,11 +834,13 @@ sap.ui.define([
                         //call xsjs 
  						that.fnGetTotalYearCost(cUrl);
                         that.OnLoadYear(sUrl);
+                        that.fnGetAbschlagYearCost(aUrl);
                     break;
 
                 case "day":
                         // VincaTestDay
                         //set correct url
+                        aUrl = "GetAbschlagDay.xsjs?id=" + id;
                         sUrl = "VincaTestDay.xsjs?id=" + id + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
                         cUrl = "GetDayCost.xsjs?id=" + id + "&cid=" + cid + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
 
@@ -664,6 +850,7 @@ sap.ui.define([
                        // oModel.refresh();
                        	that.fnGetTotalDayCost(cUrl);
                         that.OnLoadDay(sUrl);
+                        that.fnGetAbschlagDayCost(aUrl);
                     break;
             }
 		},

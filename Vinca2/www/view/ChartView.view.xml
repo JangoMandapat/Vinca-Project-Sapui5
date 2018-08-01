@@ -74,7 +74,7 @@
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
-									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL*12} €	"
+									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL} €	"
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
