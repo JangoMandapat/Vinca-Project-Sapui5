@@ -91,6 +91,11 @@
 				"name": "chartview",
 				"target": "chartview",
                 "targetControl": "idAppControl"
+			}, {
+				"pattern": "masterdata",
+				"name": "masterdata",
+				"target": "masterdata",
+                "targetControl": "idAppControl"
 			}],
 
 			"targets": {
@@ -99,6 +104,10 @@
 				},
 				"chartview": {
 					"viewName": "ChartView",
+					"transition": "show"
+				},
+				"masterdata": {
+					"viewName": "MasterData",
 					"transition": "show"
 				}
 			}
