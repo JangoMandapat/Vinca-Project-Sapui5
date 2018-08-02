@@ -13,5 +13,22 @@
 			<headerContent>
 			<Button icon="sap-icon://menu" press="handlePressOpenMenu"/>
 			</headerContent>	
+			<content >
+							<VBox fitContainer="true" justifyContent="Left" alignItems="Left" class="sapUiSmallMarginTop">
+							<items>
+							<Label text="Welcome Angelo Mandapat " class="sapUiSmallMarginBeginEnd"/>
+							<Label text="Stromabschlag pro Monat in €: " class="sapUiSmallMarginBeginEnd sapUiLargeMarginTop"/>
+							<Input 
+								placeholder=""
+								value="{/username}"
+								valueLiveUpdate="true" class="sapUiSmallMarginBeginEnd" width="90%"/>
+							<Label text="Stromkosten pro kWh in €: " class="sapUiSmallMarginBeginEnd"/>
+							<Input placeholder=""  value="{/password}" class="sapUiSmallMarginBeginEnd" width="90%" />
+							<Label text="Grundgebühren pro Jahr in €: " class="sapUiSmallMarginBeginEnd"/>
+							<Input placeholder=""  value="{/paassword}" class="sapUiSmallMarginBeginEnd" width="90%"/>
+							</items>
+							<Button id="login" width="12rem" text="Speichern" type="Emphasized" press="" class="sapUiLargeMarginTop sapUiSmallMargin"/> 
+							</VBox>
+						</content>
 			</Page>
 </core:View>

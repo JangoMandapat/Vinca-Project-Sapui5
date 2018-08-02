@@ -1,14 +1,17 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"sap/ui/core/mvc/Controller",
+	"sap/m/MessageToast"
 	
-], function(Controller) {
+], function(Controller,
+	MessageToast) {
 	"use strict";
 
-	return Controller.extend("Vinca.controller.MasterData", {
+	return Controller.extend("Vinca.controller.Login", {
 		
 		getRouter: function() {
 			return this.getOwnerComponent().getRouter();
 		},
+
 
 		fnNavigateToChart : function(){
 			this.getRouter().navTo("chartview");
@@ -38,6 +41,27 @@ sap.ui.define([
 			//MessageToast.show(msg);
 		},
 
+		Onpress1 : function () {
+			//insert username in login page
+				
+				var oUser = this.getView().getModel().getProperty("/username");
+				var oPassword = this.getView().getModel().getProperty("/password");
+				
+				if (oUser === "user" && oPassword === "1234"){
+					
+				//this.getRouter().navTo("App");
+            //	MessageToast.show("user name and password correct");
+            	this.getOwnerComponent().getRouter().navTo("home");
+
+        	}
+        	
+          
+          else {
+          MessageToast.show("Please enter correct username or password");
+          }
+				
+			
+			},
 
 		handlePressOpenMenu: function(oEvent) {
 			var oButton = oEvent.getSource();
