@@ -87,7 +87,7 @@
 				"target": "login",
                 "targetControl": "idAppControl"
 			},{
-				"pattern": "",
+				"pattern": "home",
 				"name": "home",
 				"target": "home",
                 "targetControl": "idAppControl"

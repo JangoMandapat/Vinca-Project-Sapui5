@@ -17,11 +17,11 @@
 							<VBox fitContainer="true"  alignItems="Center" class="sapUiLargeMarginTop">
 							<items>
 							<Label text="User credentials"/>
-							<Input 
+							<Input id="userID"
 								placeholder="Benutzername"
 								value="{/username}"
 								valueLiveUpdate="true"/>
-							<Input placeholder="Passwort" type="Password" value="{/password}"/>
+							<Input id="userPassword" placeholder="Passwort" type="Password" value="{/password}"/>
 							</items>
 							<Button id="login" width="12rem" text="Login" type="Emphasized" press="Onpress1"/> 
 							</VBox>

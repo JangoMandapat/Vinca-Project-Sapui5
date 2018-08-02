@@ -12,6 +12,9 @@ sap.ui.define([
 			return this.getOwnerComponent().getRouter();
 		},
 
+		fnNavigateToHome : function(){
+			this.getRouter().navTo("home");
+		},
 
 		fnNavigateToChart : function(){
 			this.getRouter().navTo("chartview");
@@ -43,15 +46,18 @@ sap.ui.define([
 
 		Onpress1 : function () {
 			//insert username in login page
+				debugger;
+				// var oUser = this.getView().getModel().getProperty("/username");
+				// var oPassword = this.getView().getModel().getProperty("/password");
+
+				var sUserName = this.getView().byId("userID").getValue();
+				var sUserPass = this.getView().byId("userPassword").getValue();
 				
-				var oUser = this.getView().getModel().getProperty("/username");
-				var oPassword = this.getView().getModel().getProperty("/password");
-				
-				if (oUser === "user" && oPassword === "1234"){
+				if (sUserName === "user" && sUserPass === "1234"){
 					
 				//this.getRouter().navTo("App");
             //	MessageToast.show("user name and password correct");
-            	this.getOwnerComponent().getRouter().navTo("home");
+            	this.fnNavigateToHome();
 
         	}
         	
