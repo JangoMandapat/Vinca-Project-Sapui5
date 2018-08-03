@@ -10,9 +10,9 @@
 	displayBlock="true"
 	>
 			<Page id="detail" title="Vinca" showHeader="true" class="SplitContainer" enableScrolling="false"  > 
-			<headerContent>
+			<!-- <headerContent>
 			<Button icon="sap-icon://menu" press="handlePressOpenMenu"/>
-			</headerContent>	
+			</headerContent>	 -->
 				<content>
 							<VBox fitContainer="true"  alignItems="Center" class="sapUiLargeMarginTop">
 							<items>

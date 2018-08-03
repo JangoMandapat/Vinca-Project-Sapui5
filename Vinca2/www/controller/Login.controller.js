@@ -24,7 +24,7 @@ sap.ui.define([
 			this.getRouter().navTo("masterdata");
 		},
 
-		handleMenuItemPress: function(oEvent) {
+		/*handleMenuItemPress: function(oEvent) {
 			if (oEvent.getParameter("item").getSubmenu()) {
 				return;
 			}
@@ -42,7 +42,7 @@ sap.ui.define([
 			}
 
 			//MessageToast.show(msg);
-		},
+		},*/
 
 		Onpress1 : function () {
 			//insert username in login page
@@ -67,9 +67,9 @@ sap.ui.define([
           }
 				
 			
-			},
+			}
 
-		handlePressOpenMenu: function(oEvent) {
+		/*handlePressOpenMenu: function(oEvent) {
 			var oButton = oEvent.getSource();
 
 			// create menu only once
@@ -83,6 +83,6 @@ sap.ui.define([
 
 			var eDock = sap.ui.core.Popup.Dock;
 			this._menu.open(this._bKeyboard, oButton, eDock.BeginTop, eDock.BeginBottom, oButton);
-		}
+		}*/
 	});
 });
