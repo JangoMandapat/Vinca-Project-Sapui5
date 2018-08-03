@@ -1,9 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast"
+	"sap/m/MessageToast",
+	"sap/ui/model/json/JSONModel"
 	
 ], function(Controller,
-	MessageToast) {
+	MessageToast, JSONModel) {
 	"use strict";
 
 	return Controller.extend("Vinca.controller.Login", {
@@ -46,14 +47,46 @@ sap.ui.define([
 
 		Onpress1 : function () {
 			//insert username in login page
-				debugger;
+				
 				// var oUser = this.getView().getModel().getProperty("/username");
 				// var oPassword = this.getView().getModel().getProperty("/password");
-
+				var oView = this.getView();
+				var that = this;
+				var sClass = "el";
 				var sUserName = this.getView().byId("userID").getValue();
 				var sUserPass = this.getView().byId("userPassword").getValue();
-				
-				if (sUserName === "user" && sUserPass === "1234"){
+				var oHtml;
+				var VincaLogin = new JSONModel();
+				var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+				var lUrl = "VincaLogin.xsjs?id=" + sUserName +"&pass=" + sUserPass + "&class=" + sClass;
+
+				oView.setModel(VincaLogin, "VincaLogin"); 
+			$.ajax({
+                        url: sHost+lUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaLogin.setData(data);
+  							
+                            oView.setModel(VincaLogin, "VincaLogin"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		
+			var iStatus = this.getView().getModel("VincaLogin").getProperty("/rs0/0/STATUS");
+			var sMessage = this.getView().getModel("VincaLogin").getProperty("/rs0/0/MSG");
+			if (iStatus === 1){
 					
 				//this.getRouter().navTo("App");
             //	MessageToast.show("user name and password correct");
@@ -63,26 +96,12 @@ sap.ui.define([
         	
           
           else {
-          MessageToast.show("Please enter correct username or password");
+          MessageToast.show(sMessage);
           }
 				
-			
-			}
+          
+		}
 
-		/*handlePressOpenMenu: function(oEvent) {
-			var oButton = oEvent.getSource();
-
-			// create menu only once
-			if (!this._menu) {
-				this._menu = sap.ui.xmlfragment(
-					"Vinca.view.fragment.menu",
-					this
-				);
-				this.getView().addDependent(this._menu);
-			}
-
-			var eDock = sap.ui.core.Popup.Dock;
-			this._menu.open(this._bKeyboard, oButton, eDock.BeginTop, eDock.BeginBottom, oButton);
-		}*/
+				
 	});
 });
