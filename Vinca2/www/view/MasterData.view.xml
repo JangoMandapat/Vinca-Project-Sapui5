@@ -18,16 +18,13 @@
 							<items>
 							<Label text="Welcome Angelo Mandapat " class="sapUiSmallMarginBeginEnd"/>
 							<Label text="Stromabschlag pro Monat in €: " class="sapUiSmallMarginBeginEnd sapUiLargeMarginTop"/>
-							<Input 
-								placeholder=""
-								value="{/username}"
-								valueLiveUpdate="true" class="sapUiSmallMarginBeginEnd" width="90%"/>
+							<Input id="Stromabschlag" placeholder="" valueLiveUpdate="true" class="sapUiSmallMarginBeginEnd" width="90%"/>
 							<Label text="Stromkosten pro kWh in €: " class="sapUiSmallMarginBeginEnd"/>
-							<Input placeholder=""  value="{/password}" class="sapUiSmallMarginBeginEnd" width="90%" />
+							<Input id="Stromkosten" placeholder=""   class="sapUiSmallMarginBeginEnd" width="90%" />
 							<Label text="Grundgebühren pro Jahr in €: " class="sapUiSmallMarginBeginEnd"/>
-							<Input placeholder=""  value="{/paassword}" class="sapUiSmallMarginBeginEnd" width="90%"/>
+							<Input id="Grundgebuhren" placeholder=""   class="sapUiSmallMarginBeginEnd" width="90%"/>
 							</items>
-							<Button id="login" width="12rem" text="Speichern" type="Emphasized" press="" class="sapUiLargeMarginTop sapUiSmallMargin"/> 
+							<Button id="login" width="12rem" text="Speichern" type="Emphasized" press="OnSave" class="sapUiLargeMarginTop sapUiSmallMargin"/> 
 							</VBox>
 						</content>
 			</Page>
