@@ -9,21 +9,18 @@ sap.ui.define([
 
 	return Controller.extend("Vinca.controller.Login", {
 		
+		onInit:function(){
+			
+		},
+
 		getRouter: function() {
 			return this.getOwnerComponent().getRouter();
 		},
 
-		fnNavigateToHome : function(){
-			this.getRouter().navTo("home");
+		fnNavigateToHome : function(vincaid){
+			this.getRouter().navTo("home",{vincaid:vincaid});
 		},
 
-		fnNavigateToChart : function(){
-			this.getRouter().navTo("chartview");
-		},
-
-		fnNavigateToMaster : function(){
-			this.getRouter().navTo("masterdata");
-		},
 
 		/*handleMenuItemPress: function(oEvent) {
 			if (oEvent.getParameter("item").getSubmenu()) {
@@ -45,11 +42,12 @@ sap.ui.define([
 			//MessageToast.show(msg);
 		},*/
 
-		Onpress1 : function () {
+		Onpress1 : function (channel, event, oData) {
 			//insert username in login page
 				
 				// var oUser = this.getView().getModel().getProperty("/username");
 				// var oPassword = this.getView().getModel().getProperty("/password");
+
 				var oView = this.getView();
 				var that = this;
 				var sClass = "el";
@@ -86,11 +84,12 @@ sap.ui.define([
 		
 			var iStatus = this.getView().getModel("VincaLogin").getProperty("/rs0/0/STATUS");
 			var sMessage = this.getView().getModel("VincaLogin").getProperty("/rs0/0/MSG");
+			var VincaId =  this.getView().getModel("VincaLogin").getProperty("/rs0/0/VINCA_ID");
 			if (iStatus === 1){
 					
 				//this.getRouter().navTo("App");
             //	MessageToast.show("user name and password correct");
-            	this.fnNavigateToHome();
+            	this.fnNavigateToHome(VincaId);
 
         	}
         	

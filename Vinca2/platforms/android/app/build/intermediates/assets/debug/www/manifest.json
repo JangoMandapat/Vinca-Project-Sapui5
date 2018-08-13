@@ -83,24 +83,33 @@
 
 			"routes": [{
 				"pattern": "",
+				"name": "login",
+				"target": "login",
+                "targetControl": "idAppControl"
+			},{
+				"pattern": "home/{vincaid}",
 				"name": "home",
 				"target": "home",
                 "targetControl": "idAppControl"
 			}, {
-				"pattern": "chartview",
+				"pattern": "chartview/{vincaid}",
 				"name": "chartview",
 				"target": "chartview",
                 "targetControl": "idAppControl"
 			}, {
-				"pattern": "masterdata",
+				"pattern": "masterdata/{vincaid}",
 				"name": "masterdata",
 				"target": "masterdata",
                 "targetControl": "idAppControl"
 			}],
 
 			"targets": {
+				"login": {
+					"viewName": "Login"
+				},
 				"home": {
 					"viewName": "Home"
+
 				},
 				"chartview": {
 					"viewName": "ChartView",

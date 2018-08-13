@@ -1,22 +1,32 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageToast"
 	
-], function(Controller) {
+], function(Controller, JSONModel, MessageToast) {
 	"use strict";
 
 	return Controller.extend("Vinca.controller.MasterData", {
 		
+		onInit:function(){
+		 this.getRouter().attachRouteMatched(this.onRouteMatched, this);
+		},
+
+		onRouteMatched : function (oEvent) {
+			this._passedvariable = oEvent.getParameter('arguments');
+
+		},
+
 		getRouter: function() {
 			return this.getOwnerComponent().getRouter();
 		},
 
-
 		fnNavigateToChart : function(){
-			this.getRouter().navTo("chartview");
+			this.getRouter().navTo("chartview",{vincaid:this._passedvariable.vincaid});
 		},
 
 		fnNavigateToMaster : function(){
-			this.getRouter().navTo("masterdata");
+			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
 		},
 
 		handleMenuItemPress: function(oEvent) {
@@ -38,6 +48,8 @@ sap.ui.define([
 
 			//MessageToast.show(msg);
 		},
+
+
 		handlePressOpenMenu: function(oEvent) {
 			var oButton = oEvent.getSource();
 
@@ -52,6 +64,68 @@ sap.ui.define([
 
 			var eDock = sap.ui.core.Popup.Dock;
 			this._menu.open(this._bKeyboard, oButton, eDock.BeginTop, eDock.BeginBottom, oButton);
+		},
+
+		OnSave : function () {
+			//insert username in login page
+				
+				// var oUser = this.getView().getModel().getProperty("/username");
+				// var oPassword = this.getView().getModel().getProperty("/password");
+				
+
+
+				var oView = this.getView();
+				var that = this;
+				var id = this._passedvariable.vincaid;
+				var reduction = parseFloat(this.getView().byId("Stromabschlag").getValue());
+
+				var cost = parseFloat(this.getView().byId("Stromkosten").getValue());
+				var fee = parseFloat(this.getView().byId("Grundgebuhren").getValue());
+				var oHtml;
+				var VincaMasterData = new JSONModel();
+				var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
+				var lUrl = "VincaMasterData.xsjs?id=" + id +"&reduction=" + reduction + "&cost=" + cost + "&fee=" + fee;
+
+				oView.setModel(VincaMasterData, "VincaMasterData"); 
+			$.ajax({
+                        url: sHost+lUrl,
+                        type: "GET",
+                        async: false,
+                        success: function(data, textStatus, XMLHttpRequest) {
+                            console.log(XMLHttpRequest);
+  							VincaMasterData.setData(data);
+  							
+                            oView.setModel(VincaMasterData, "VincaMasterData"); 
+                            //oView.byId("Stromkosten").setModel(VincaCostDataModel);
+                            /*oView.createContent("VincaTestDataModel");*/                  
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            MessageToast.show("Error : " + textStatus);
+                            console.log(XMLHttpRequest);
+                            console.log(errorThrown);
+                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+                           
+                        },
+                        timeout: 12000 //timeout to 12sec
+                    });
+		
+			//var iStatus = this.getView().getModel("VincaMasterData").getProperty("/rs0/0/STATUS");
+			var sMessage = this.getView().getModel("VincaMasterData").getProperty("/rs0/0/MSG");
+			//if (iStatus === 1){
+					
+				//this.getRouter().navTo("App");
+            //	MessageToast.show("user name and password correct");
+            //	this.fnNavigateToHome();
+
+        	//}
+        	
+          
+         // else {
+          MessageToast.show(sMessage);
+         // }
+				
+          
 		}
 	});
 });

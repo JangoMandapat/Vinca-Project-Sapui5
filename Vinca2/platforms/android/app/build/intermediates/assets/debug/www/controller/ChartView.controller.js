@@ -18,9 +18,8 @@ sap.ui.define([
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
-			this.fnLoadDefaultValue();
-			this.fnLoadDefaultValue2();
-			this.fnGetDefaultAbschlagYear();
+			
+			this.getRouter().attachRouteMatched(this.onRouteMatched, this);
 			
 		},
 
@@ -28,9 +27,20 @@ sap.ui.define([
 			return this.getOwnerComponent().getRouter();
 		},
 
+		onRouteMatched : function (oEvent) {
+			this._passedvariable = oEvent.getParameter('arguments');
+			this.fnLoadDefaultValue();
+			this.fnLoadDefaultValue2();
+			this.fnGetDefaultAbschlagYear();
+		},
+
+		fnNavigateToChart : function(){
+			this.getRouter().navTo("chartview",{vincaid:this._passedvariable.vincaid});
+		},
+
 
 		fnNavigateToMaster : function(){
-			this.getRouter().navTo("masterdata");
+			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
 		},
 
 		handleMenuItemPress: function(oEvent) {
@@ -77,7 +87,7 @@ sap.ui.define([
 			var oView = this.getView();
 			var VincaAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
-			var id = 1;
+			var id = this._passedvariable.vincaid;
 			var aUrl = "GetAbschlagYear.xsjs?id=" + id;
 			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
 			$.ajax({
@@ -311,7 +321,7 @@ sap.ui.define([
 			var VincaTestDataModel = new JSONModel();	
 			var oChartContainer = that.getView().byId("chartContainer");	
 			var oDatePicker = that.getView().byId("idDatePicker");
-			var id = 1;
+			var id = this._passedvariable.vincaid;;
 			var sClass= "el";
 			var date = oDatePicker.getValue();
             var year = date.split(".")[2];
@@ -438,8 +448,8 @@ sap.ui.define([
 			var oView = this.getView();
 			var VincaCostDataModel = new JSONModel();		
 			var oDatePicker = that.getView().byId("idDatePicker");
-			var id = 1;
-			var cid = 1;
+			var id = this._passedvariable.vincaid;;
+			var cid = this._passedvariable.vincaid;;
 			var sClass= "el";
 			var date = oDatePicker.getValue();
             var year = date.split(".")[2];
@@ -793,8 +803,8 @@ sap.ui.define([
             var sUrl;
             var cUrl;
             var aUrl;
-            var id = 1;
-            var cid = 1;
+            var id = this._passedvariable.vincaid;;
+            var cid = this._passedvariable.vincaid;;
             var sClass = "el";
             //var year = 2017;
            // var month = 1;

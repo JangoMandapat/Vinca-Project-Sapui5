@@ -9,9 +9,14 @@
 	xmlns:core="sap.ui.core"
 	displayBlock="true"
 	>
-			<Page id="detail" title="Dein Stromverbrauch" showHeader="true" class="SplitContainer" enableScrolling="false"  > 
+			<Page id="detail"  showHeader="true" showNavButton="false" class="SplitContainer" enableScrolling="false"  > 
 			<headerContent>
+			<HBox alignItems="Center" justifyContent="SpaceBetween">
+
 			<Button icon="sap-icon://menu" press="handlePressOpenMenu"/>
+			<Text text="Dein Stromverbrauch" />
+			<Text class="sapUiSmallMarginBeginEnd"/>
+			</HBox>
 			</headerContent>		
 				<subHeader>
 					<Toolbar>
@@ -82,9 +87,14 @@
 									title="{VincaCostDataModel>/rs0/0/TOTAL} kWh"
 									intro="Stromverbrauch"
 									icon="sap-icon://lightbulb" >
-									<layoutData>
+									<!-- <layoutData>
 										<layout:GridData span="L6 M12 S12" class="sapUiNoMarginTop" />
-									</layoutData>
+									</layoutData> -->
+								</ObjectListItem>
+								<ObjectListItem id="Differenz"
+									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL} €	"
+									intro="Differenz"
+									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
 							</layout:content>
 						</layout:Grid>

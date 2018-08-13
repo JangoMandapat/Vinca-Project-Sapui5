@@ -8,16 +8,25 @@ sap.ui.define([
 
 	return Controller.extend("Vinca.controller.MasterData", {
 		
+		onInit:function(){
+		 this.getRouter().attachRouteMatched(this.onRouteMatched, this);
+		},
+
+		onRouteMatched : function (oEvent) {
+			this._passedvariable = oEvent.getParameter('arguments');
+
+		},
+
 		getRouter: function() {
 			return this.getOwnerComponent().getRouter();
 		},
 
 		fnNavigateToChart : function(){
-			this.getRouter().navTo("chartview");
+			this.getRouter().navTo("chartview",{vincaid:this._passedvariable.vincaid});
 		},
 
 		fnNavigateToMaster : function(){
-			this.getRouter().navTo("masterdata");
+			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
 		},
 
 		handleMenuItemPress: function(oEvent) {
@@ -62,9 +71,12 @@ sap.ui.define([
 				
 				// var oUser = this.getView().getModel().getProperty("/username");
 				// var oPassword = this.getView().getModel().getProperty("/password");
+				
+
+
 				var oView = this.getView();
 				var that = this;
-				var id = 1;
+				var id = this._passedvariable.vincaid;
 				var reduction = parseFloat(this.getView().byId("Stromabschlag").getValue());
 
 				var cost = parseFloat(this.getView().byId("Stromkosten").getValue());
