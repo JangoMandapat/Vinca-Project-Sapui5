@@ -327,7 +327,7 @@ sap.ui.define([
             var year = date.split(".")[2];
             var month = date.split(".")[1];
             var day = date.split(".")[0];
-
+            that.getView().byId("sgtbtn").setSelectedKey("year");
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var sUrl = "VincaTestYear.xsjs?id=" + id +  "&year=" + year + "&class=" + sClass;
 			/*var data = {
@@ -377,7 +377,8 @@ sap.ui.define([
 
 
 			var oVizFrame = this.getView().byId("idcolumn");
-
+			oVizFrame.removeAllFeeds();
+			oVizFrame.destroyDataset();	
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
@@ -804,7 +805,7 @@ sap.ui.define([
             var cUrl;
             var aUrl;
             var id = this._passedvariable.vincaid;;
-            var cid = this._passedvariable.vincaid;;
+            var cid = this._passedvariable.vincaid;
             var sClass = "el";
             //var year = 2017;
            // var month = 1;

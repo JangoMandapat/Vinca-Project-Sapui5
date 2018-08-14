@@ -11,3 +11,10 @@
 .sapMSegB {
 	height: 2rem !important;
 }
+
+.sapMObjLIntro{
+	text-align: center;
+}
+.sapMBar .sapMText {
+	font-weight: bold;
+}

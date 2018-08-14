@@ -92,7 +92,7 @@
 									</layoutData> -->
 								</ObjectListItem>
 								<ObjectListItem id="Differenz"
-									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL} €	"
+									title="{VincaCostDataModel>/rs0/0/DIFFERENCE} €	"
 									intro="Differenz"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
