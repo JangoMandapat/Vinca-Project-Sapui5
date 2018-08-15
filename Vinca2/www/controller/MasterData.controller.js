@@ -81,10 +81,11 @@ sap.ui.define([
 
 				var cost = parseFloat(this.getView().byId("Stromkosten").getValue());
 				var fee = parseFloat(this.getView().byId("Grundgebuhren").getValue());
+				var sclass = "el";
 				var oHtml;
 				var VincaMasterData = new JSONModel();
 				var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
-				var lUrl = "VincaMasterData.xsjs?id=" + id +"&reduction=" + reduction + "&cost=" + cost + "&fee=" + fee;
+				var lUrl = "VincaMasterData.xsjs?id=" + id +"&reduction=" + reduction + "&cost=" + cost + "&fee=" + fee + "&class=" + sclass;
 
 				oView.setModel(VincaMasterData, "VincaMasterData"); 
 			$.ajax({

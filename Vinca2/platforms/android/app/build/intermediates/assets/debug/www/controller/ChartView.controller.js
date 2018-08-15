@@ -88,7 +88,7 @@ sap.ui.define([
 			var VincaAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var id = this._passedvariable.vincaid;
-			var aUrl = "GetAbschlagYear.xsjs?id=" + id;
+			var aUrl = "GetAbschlagDay.xsjs?id=" + id;
 			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
@@ -327,9 +327,10 @@ sap.ui.define([
             var year = date.split(".")[2];
             var month = date.split(".")[1];
             var day = date.split(".")[0];
-            that.getView().byId("sgtbtn").setSelectedKey("year");
+            that.getView().byId("sgtbtn").setSelectedKey("day");
+            oChartContainer.setTitle(day+"."+month+"."+year);
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
-			var sUrl = "VincaTestYear.xsjs?id=" + id +  "&year=" + year + "&class=" + sClass;
+			var  sUrl = "VincaTestDay.xsjs?id=" + id + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
 			/*var data = {
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
@@ -376,14 +377,15 @@ sap.ui.define([
  });*/
 
 
+			
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
-			oVizFrame.destroyDataset();	
+			oVizFrame.destroyDataset();
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
 
 				dimensions : [{
-					name : 'Monat',
-					value : "{MONTH}"}],
+					name : 'Stunde',
+					value : "{HOUR}"}],
 
 				measures : [{
 					name : 'kWh',
@@ -400,33 +402,44 @@ sap.ui.define([
 		   // set Viz Properties
 
 		   oVizFrame.setVizProperties({
-                plotArea: {
-                    dataLabel: {
-                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+				plotArea: {
+					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+						visible: false
+						
+					},
 
-                        visible: false
+
+				},
+				/*yAxis:{ 
+               		 scale:{ 
+                    	fixedRange:true, 
+                    	minValue:0, 
+                    	maxValue:1
                     }
-                },
-                valueAxis: {
+                },*/
+				valueAxis: {
 					label: {
 						formatString: null
 					},
 					title: {
-						visible: false
+						visible: true,
+						text: "kWh"
 					}
 				},
-                categoryAxis: {
-                    title: {
-                        visible: false
-                    }
-                },
-                title: {
-                    visible: false,
-                    text: 'Year'
-                }
-            });
+				categoryAxis: {
+					title: {
+						visible: true,
+						text:"Hour"
+					}
+				},
 
-		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+				title: {
+					visible: false,
+					text: 'Year'
+				}
+			});
+
+			var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
 		   		'values' : ["kWh"]
@@ -435,12 +448,12 @@ sap.ui.define([
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
-		   		'values' : ["Monat"]
+		   		'values' : ["Stunde"]
 		   	});
 
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
-	     oChartContainer.setTitle(year);
+
 		},
 
 		fnLoadDefaultValue2: function(){
@@ -459,7 +472,7 @@ sap.ui.define([
 		
 
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
-			var cUrl = "GetYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
+			var cUrl = "GetDayCost.xsjs?id=" + id + "&cid=" + cid + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
 			/*var data = {
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
@@ -546,8 +559,8 @@ sap.ui.define([
                 plotArea: {
                     dataLabel: {
                        /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
-
-                        visible: false
+                        visible: false,
+     
                     }
                 },
                 valueAxis: {
@@ -555,12 +568,14 @@ sap.ui.define([
 						formatString: null
 					},
 					title: {
-						visible: false
+						visible: true,
+						text: "kWh"
 					}
 				},
                 categoryAxis: {
                     title: {
-                        visible: false
+                        visible: true,
+                        text: "Month"
                     }
                 },
                 title: {
@@ -583,6 +598,7 @@ sap.ui.define([
 
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
+	     
 		
 		},
 
@@ -653,12 +669,14 @@ sap.ui.define([
 						formatString: null
 					},
 					title: {
-						visible: false
+						visible: true,
+						text: "kWh"
 					}
 				},
                 categoryAxis: {
                     title: {
-                        visible: false
+                        visible: true,
+                        text: "Day"
                     },
                 },
                 title: {
@@ -756,12 +774,14 @@ sap.ui.define([
 						formatString: null
 					},
 					title: {
-						visible: false
+						visible: true,
+						text: "kWh"
 					}
 				},
 				categoryAxis: {
 					title: {
-						visible: false
+						visible: true,
+						text: "Hour"
 					}
 				},
 				title: {

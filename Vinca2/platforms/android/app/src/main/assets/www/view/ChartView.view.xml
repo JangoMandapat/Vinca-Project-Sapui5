@@ -22,11 +22,13 @@
 					<Toolbar>
 						<DatePicker id="idDatePicker" class="sapUiSmallMarginTop sapUiSizeCompact" change="onChangeDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"/>
 						
-						<SegmentedButton id="sgtbtn" selectedKey="year" select="OnHandleSwitchTab" class="sapUiSizeCompact">
+						<SegmentedButton id="sgtbtn" selectedKey="day" select="OnHandleSwitchTab" class="sapUiSizeCompact">
 						<items>
-							<SegmentedButtonItem text="Jahr" key="year" />
-							<SegmentedButtonItem text="Monat" key="month"/>
 							<SegmentedButtonItem text="Tag" key="day"/>
+							<SegmentedButtonItem text="Monat" key="month"/>
+							<SegmentedButtonItem text="Jahr" key="year" />
+							
+							
 						</items>
 					</SegmentedButton>
 						
@@ -46,7 +48,7 @@
 							showFullScreen="true"
 						    showPersonalization="false"
 							autoAdjustHeight="false"
-							showLegend="true">
+							showLegend="false">
 						 
 							 <suite:content>
 									<suite:ChartContainerContent>
@@ -72,6 +74,14 @@
 						<layout:Grid defaultSpan="L1 M6 S6" class="gridlayout sapUiTinyMarginTop">
 							<layout:content>
 								<!-- Third / Half width items -->
+								<ObjectListItem id="Stromverbrauch"
+									title="{VincaCostDataModel>/rs0/0/TOTAL} kWh"
+									intro="Stromverbrauch"
+									icon="sap-icon://lightbulb" >
+									<!-- <layoutData>
+										<layout:GridData span="L6 M12 S12" class="sapUiNoMarginTop" />
+									</layoutData> -->
+								</ObjectListItem>
 								<ObjectListItem id="Stromkosten"
 									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
 									intro="Stromkosten"
@@ -83,14 +93,7 @@
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
-								<ObjectListItem id="Stromverbrauch"
-									title="{VincaCostDataModel>/rs0/0/TOTAL} kWh"
-									intro="Stromverbrauch"
-									icon="sap-icon://lightbulb" >
-									<!-- <layoutData>
-										<layout:GridData span="L6 M12 S12" class="sapUiNoMarginTop" />
-									</layoutData> -->
-								</ObjectListItem>
+								
 								<ObjectListItem id="Differenz"
 									title="{VincaCostDataModel>/rs0/0/DIFFERENCE} €	"
 									intro="Differenz"
