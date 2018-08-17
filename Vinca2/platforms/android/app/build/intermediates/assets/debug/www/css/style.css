@@ -1,7 +1,7 @@
 /* Enter your custom styles here d*/
 
-.sapMText .sapMObjLTitle {
-	font-size: .5; 
+.sapMText.sapMObjLTitle {
+	font-weight: bold;
 }
 
 .gridlayout .sapMLIB.sapMObjLItem {
@@ -17,4 +17,15 @@
 }
 .sapMBar .sapMText {
 	font-weight: bold;
+}
+.sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+
+}
+	/*margin-left: 10rem;*/
+	/*margin-left: 150px;
+
+}*/
+.sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex.sapMTBStandard {
+	text-align: center;
+    display: grid;
 }

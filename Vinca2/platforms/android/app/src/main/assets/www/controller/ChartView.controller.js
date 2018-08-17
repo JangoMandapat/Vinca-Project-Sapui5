@@ -89,6 +89,8 @@ sap.ui.define([
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var id = this._passedvariable.vincaid;
 			var aUrl = "GetAbschlagDay.xsjs?id=" + id;
+			
+
 			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
@@ -429,7 +431,7 @@ sap.ui.define([
 				categoryAxis: {
 					title: {
 						visible: true,
-						text:"Hour"
+						text:"Zeitraum"
 					}
 				},
 
@@ -438,6 +440,11 @@ sap.ui.define([
 					text: 'Year'
 				}
 			});
+
+		   	var scales = [{
+     		'feed': 'color',
+     		'palette': ['#000000']
+      		}];
 
 			var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -450,7 +457,8 @@ sap.ui.define([
 		   		'type' : "Dimension",
 		   		'values' : ["Stunde"]
 		   	});
-
+	     var vizScalesOption = {replace: true};
+ 		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
 
@@ -575,7 +583,7 @@ sap.ui.define([
                 categoryAxis: {
                     title: {
                         visible: true,
-                        text: "Month"
+                        text: "Monat"
                     }
                 },
                 title: {
@@ -583,6 +591,10 @@ sap.ui.define([
                     text: 'Year'
                 }
             });
+	    var scales = [{
+     		'feed': 'color',
+     		'palette': ['#000000']
+      		}];
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -596,6 +608,8 @@ sap.ui.define([
 		   		'values' : ["Monat"]
 		   	});
 
+	     var vizScalesOption = {replace: true};
+ 		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
 	     
@@ -676,7 +690,7 @@ sap.ui.define([
                 categoryAxis: {
                     title: {
                         visible: true,
-                        text: "Day"
+                        text: "Tag"
                     },
                 },
                 title: {
@@ -684,6 +698,10 @@ sap.ui.define([
                     text: 'Year'
                 }
             });
+		var scales = [{
+     		'feed': 'color',
+     		'palette': ['#000000']
+      		}];
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -696,7 +714,8 @@ sap.ui.define([
 		   		'type' : "Dimension",
 		   		'values' : ["Tag"]
 		   	});
-
+	     var vizScalesOption = {replace: true};
+ 		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
 		},
@@ -781,7 +800,7 @@ sap.ui.define([
 				categoryAxis: {
 					title: {
 						visible: true,
-						text: "Hour"
+						text: "Zeitraum"
 					}
 				},
 				title: {
@@ -789,7 +808,10 @@ sap.ui.define([
 					text: 'Year'
 				}
 			});
-
+		var scales = [{
+     		'feed': 'color',
+     		'palette': ['#000000']
+      		}];
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
@@ -801,7 +823,8 @@ sap.ui.define([
 		   		'type' : "Dimension",
 		   		'values' : ["Stunde"]
 		   	});
-
+	     var vizScalesOption = {replace: true};
+ 		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
 

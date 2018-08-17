@@ -89,6 +89,8 @@ sap.ui.define([
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var id = this._passedvariable.vincaid;
 			var aUrl = "GetAbschlagDay.xsjs?id=" + id;
+			
+
 			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
@@ -429,7 +431,7 @@ sap.ui.define([
 				categoryAxis: {
 					title: {
 						visible: true,
-						text:"Hour"
+						text:"Zeitraum"
 					}
 				},
 
@@ -581,7 +583,7 @@ sap.ui.define([
                 categoryAxis: {
                     title: {
                         visible: true,
-                        text: "Month"
+                        text: "Monat"
                     }
                 },
                 title: {
@@ -688,7 +690,7 @@ sap.ui.define([
                 categoryAxis: {
                     title: {
                         visible: true,
-                        text: "Day"
+                        text: "Tag"
                     },
                 },
                 title: {
@@ -798,7 +800,7 @@ sap.ui.define([
 				categoryAxis: {
 					title: {
 						visible: true,
-						text: "Hour"
+						text: "Zeitraum"
 					}
 				},
 				title: {

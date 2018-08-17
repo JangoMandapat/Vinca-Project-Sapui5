@@ -31,13 +31,19 @@
 							
 						</items>
 					</SegmentedButton>
-						
+					
 					</Toolbar>
+
 				</subHeader>
-				
+			   	<!-- <FlexBox
+					height="100px"
+					alignItems="Start"
+					justifyContent="Center">
+				</FlexBox> -->
 
 				<content>
 					<ScrollContainer
+						class="ScrollContainer"
 						height="100%"
 						width="100%"
 						horizontal="true"
@@ -45,10 +51,14 @@
 						focusable="true"> 
 						<suite:ChartContainer 
 							id="chartContainer"
-							showFullScreen="true"
+							class="chartContainercss"
+							showFullScreen="false"
 						    showPersonalization="false"
 							autoAdjustHeight="false"
-							showLegend="false">
+							showLegend="false"
+							showLegendButton="false"
+							showZoom="false"
+							>
 						 
 							 <suite:content>
 									<suite:ChartContainerContent>
@@ -85,7 +95,7 @@
 								<ObjectListItem id="Stromkosten"
 									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
 									intro="Stromkosten"
-									icon="sap-icon://customer-financial-fact-sheet"
+									icon="sap-icon://loan"
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
@@ -97,7 +107,7 @@
 								<ObjectListItem id="Differenz"
 									title="{VincaCostDataModel>/rs0/0/DIFFERENCE} €	"
 									intro="Differenz"
-									icon="sap-icon://customer-financial-fact-sheet" >
+									icon="sap-icon://commission-check" >
 								</ObjectListItem>
 							</layout:content>
 						</layout:Grid>
