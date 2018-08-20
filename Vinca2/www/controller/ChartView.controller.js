@@ -443,7 +443,7 @@ sap.ui.define([
 
 		   	var scales = [{
      		'feed': 'color',
-     		'palette': ['#000000']
+     		'palette': ['#ffc133']
       		}];
 
 			var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
@@ -593,7 +593,7 @@ sap.ui.define([
             });
 	    var scales = [{
      		'feed': 'color',
-     		'palette': ['#000000']
+     		'palette': ['#ffc133']
       		}];
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
@@ -700,7 +700,7 @@ sap.ui.define([
             });
 		var scales = [{
      		'feed': 'color',
-     		'palette': ['#000000']
+     		'palette': ['#ffc133']
       		}];
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
@@ -810,7 +810,7 @@ sap.ui.define([
 			});
 		var scales = [{
      		'feed': 'color',
-     		'palette': ['#000000']
+     		'palette': ['#ffc133']
       		}];
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
