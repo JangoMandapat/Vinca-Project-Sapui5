@@ -28,4 +28,9 @@
 .sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex.sapMTBStandard {
 	text-align: center;
     display: grid;
+    /*display: table-column-group;*/
+    /*height: 0rem !important;*/
 }
+/*.sgtbtn2 {
+	width: 0%;
+}*/

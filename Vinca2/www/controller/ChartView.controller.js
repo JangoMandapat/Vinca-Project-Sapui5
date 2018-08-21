@@ -14,7 +14,8 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("Vinca.controller.ChartView", {
-		
+
+
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
@@ -62,6 +63,8 @@ sap.ui.define([
 
 			//MessageToast.show(msg);
 		},
+
+
 
 		handlePressOpenMenu: function(oEvent) {
 			var oButton = oEvent.getSource();
@@ -446,6 +449,8 @@ sap.ui.define([
      		'palette': ['#ffc133']
       		}];
 
+      		
+
 			var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
@@ -457,6 +462,7 @@ sap.ui.define([
 		   		'type' : "Dimension",
 		   		'values' : ["Stunde"]
 		   	});
+
 	     var vizScalesOption = {replace: true};
  		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);

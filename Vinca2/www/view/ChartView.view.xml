@@ -40,7 +40,7 @@
 					alignItems="Start"
 					justifyContent="Center">
 				</FlexBox> -->
-
+				
 				<content>
 					<ScrollContainer
 						class="ScrollContainer"
@@ -54,14 +54,16 @@
 							class="chartContainercss"
 							showFullScreen="false"
 						    showPersonalization="false"
-							autoAdjustHeight="false"
+							autoAdjustHeight="true"
 							showLegend="false"
 							showLegendButton="false"
 							showZoom="false"
 							>
-						 
+
 							 <suite:content>
-									<suite:ChartContainerContent>
+									<suite:ChartContainerContent
+										icon="sap-icon://line-chart"
+										title="Line Chart">
 									<suite:content>
 										
 										<viz:VizFrame 
