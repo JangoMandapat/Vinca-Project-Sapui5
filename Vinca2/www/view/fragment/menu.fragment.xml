@@ -11,6 +11,9 @@
 				text=">Dein Stromverbrauch"
 				/>
 			<u:MenuItem
+				text=">Dein Gasverbrauch"
+				/>
+			<u:MenuItem
 				text=">Stammdaten"
 				startsSection="true"
 				/>

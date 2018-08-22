@@ -40,6 +40,10 @@ sap.ui.define([
 			this.getRouter().navTo("chartview",{vincaid:this._passedvariable.vincaid});
 		},
 
+		fnNavigateToCharttwo : function(){
+			this.getRouter().navTo("chartviewtwo",{vincaid:this._passedvariable.vincaid});
+		},
+
 
 		fnNavigateToMaster : function(){
 			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
@@ -57,6 +61,9 @@ sap.ui.define([
 				msg = oEvent.getParameter("item").getText();
 				if(msg===">Dein Stromverbrauch"){
 					this.fnNavigateToChart();
+				}else if(msg===">Dein Gasverbrauch"){
+					this.fnNavigateToCharttwo();
+
 				}else if (msg===">Stammdaten"){
 					this.fnNavigateToMaster();
 				}
@@ -528,11 +535,11 @@ sap.ui.define([
 		CheckValue: function(sData){
 
                             if (0 <= sData ){
-                            	debugger;
+                            	
                             	this.getView().byId("Differenz").removeStyleClass("colorChangeValueNegative");
                             	this.getView().byId("Differenz").addStyleClass("colorChangeValuePositive");
                             } else {
-                            	debugger;
+                            	
                             	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
                             	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
 
