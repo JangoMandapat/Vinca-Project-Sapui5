@@ -16,6 +16,7 @@ sap.ui.define([
 
 	return Controller.extend("Vinca.controller.ChartView", {
 		formatter: formatter,
+
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
@@ -251,6 +252,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			
 							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
                             this.CheckValue(nData);
 		},
@@ -525,10 +527,15 @@ sap.ui.define([
 
 		CheckValue: function(sData){
 
-                            if (sData <= 0 ){
-                            	this.getView().byId("Differenz").addStyleClass("colorChangeValue");
-                            } else{
-                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValue");
+                            if (0 <= sData ){
+                            	debugger;
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValueNegative");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValuePositive");
+                            } else {
+                            	debugger;
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
+
                             }
 		},
 
