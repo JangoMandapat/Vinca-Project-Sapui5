@@ -93,19 +93,19 @@
 									</layoutData> -->
 								</ObjectListItem>
 								<ObjectListItem id="Stromkosten"
-									title="{VincaCostDataModel>/rs0/0/COSTS} €	"
+									title="{path: 'VincaCostDataModel>/rs0/0/COSTS', formatter: '.formatter.CheckCurrencyValue'}€"
 									intro="Stromkosten"
 									icon="sap-icon://loan"
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
-									title="{VincaAbschlagDataModel>/rs0/0/TEE_EL} €	"
+									title="{path: 'VincaAbschlagDataModel>/rs0/0/TEE_EL', formatter: '.formatter.CheckCurrencyValue'}€"
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
 								
 								<ObjectListItem id="Differenz"
-									title="{VincaCostDataModel>/rs0/0/DIFFERENCE} €	"
+									title="{path: 'VincaCostDataModel>/rs0/0/DIFFERENCE', formatter: '.formatter.CheckCurrencyValue'}€"
 									intro="Differenz"
 									icon="sap-icon://commission-check" >
 								</ObjectListItem>

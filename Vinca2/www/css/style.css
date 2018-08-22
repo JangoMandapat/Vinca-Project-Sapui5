@@ -29,3 +29,7 @@
 	text-align: center;
     display: grid;
 }
+
+.colorChangeValue .sapMText {
+	color: #d11020 !important;
+}
