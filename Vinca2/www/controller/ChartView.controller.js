@@ -15,13 +15,11 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("Vinca.controller.ChartView", {
-<<<<<<< HEAD
+
 		formatter: formatter,
-		
-=======
 
 
->>>>>>> f3d4ae6f958808f01e3e6885fb467e8415cade31
+
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
@@ -726,8 +724,6 @@ sap.ui.define([
                 }
             });
 		 
-		  var nData = oView.getModel("VincaTestDataModel").getProperty("/rs0/0/VALUE");
-                            this.checkGraph(nData);
 		var scales = [{
      		'feed': 'color',
      		'palette': ['#ffc133']
@@ -750,23 +746,7 @@ sap.ui.define([
 	     oVizFrame.addFeed(feedCategoryAxis);
 		},
 
-		checkGraph: function(sData){
-			
-			if (sData > 40 ){
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#ffc133']
-      							}];
-      							return sData;
-                            } else{
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#d11020']
-      							}];
-      							return sData;
-                            }
 		
-		},
 
 		OnLoadDay: function(sUrl){
 			var oHtml;
