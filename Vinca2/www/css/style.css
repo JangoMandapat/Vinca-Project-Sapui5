@@ -33,9 +33,10 @@
 }
 
 
-.colorChangeValue .sapMText {
+.colorChangeValueNegative .sapMText {
 	color: #d11020 !important;
+}
 
-/*.sgtbtn2 {
-	width: 0%;
-}*/
+.colorChangeValuePositive .sapMText {
+	color: #05b805;
+}
