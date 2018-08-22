@@ -3,6 +3,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" 
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
 	displayBlock="true"
 	xmlns="sap.m">
 	<!-- <App>
@@ -10,8 +11,9 @@
 	<Page title="{i18n>title}">
 				
     <content>
-   <VBox>
-	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
+   
+   <HBox class="sapUiSizeCompact">
+	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -20,7 +22,7 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
+	<GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -29,7 +31,9 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile header="Stammdaten" size="S" frameType="OneByOne" press="fnNavigateToMaster" class="sapUiMediumMarginBegin sapUiMediumMarginTop ">
+	</HBox>
+	<HBox class="sapUiSizeCompact">
+	<GenericTile header="Stammdaten" size="S" frameType="OneByOne" press="fnNavigateToMaster" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -38,7 +42,16 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	</VBox>
+	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+		<tileContent>
+			<TileContent size="S">
+				<content>
+					<NumericContent size="M" icon="sap-icon://blur" />
+				</content>
+			</TileContent>
+		</tileContent>
+	</GenericTile>
+	</HBox>
 				</content>
  
 			</Page>
