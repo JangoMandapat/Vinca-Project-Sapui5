@@ -28,8 +28,16 @@
 .sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex.sapMTBStandard {
 	text-align: center;
     display: grid;
+    /*display: table-column-group;*/
+    /*height: 0rem !important;*/
 }
+<<<<<<< HEAD
 
 .colorChangeValue .sapMText {
 	color: #d11020 !important;
 }
+=======
+/*.sgtbtn2 {
+	width: 0%;
+}*/
+>>>>>>> f3d4ae6f958808f01e3e6885fb467e8415cade31

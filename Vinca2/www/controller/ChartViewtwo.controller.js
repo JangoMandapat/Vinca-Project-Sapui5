@@ -8,20 +8,14 @@ sap.ui.define([
 	"sap/viz/ui5/data/DimensionDefinition",
 	"sap/viz/ui5/data/MeasureDefinition",
 	"sap/viz/ui5/controls/common/feeds/FeedItem",
-	"sap/ui/model/json/JSONModel",
-	"Vinca/util/formatter"
+	"sap/ui/model/json/JSONModel"
 
-], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
+], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel) {
 	"use strict";
 
-	return Controller.extend("Vinca.controller.ChartView", {
-<<<<<<< HEAD
-		formatter: formatter,
-		
-=======
+	return Controller.extend("Vinca.controller.ChartViewtwo", {
 
 
->>>>>>> f3d4ae6f958808f01e3e6885fb467e8415cade31
 		onInit: function(){
 
 			this.getView().byId("idDatePicker").setValue(moment().format("DD.MM.YYYY"));
@@ -123,8 +117,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-					var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+		
 		},
 
 		// for Abschlag
@@ -257,8 +250,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+		
 		},
 
 		fnGetTotalYearCost : function(cUrl){
@@ -291,8 +283,6 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
 		
 		},
 
@@ -326,8 +316,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+		
 		},
 
 		fnLoadDefaultValue: function(){
@@ -525,17 +514,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
-		},
-
-		CheckValue: function(sData){
-
-                            if (sData <= 0 ){
-                            	this.getView().byId("Differenz").addStyleClass("colorChangeValue");
-                            } else{
-                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValue");
-                            }
+			
 		},
 
 		OnLoadYear: function(sUrl){
@@ -725,9 +704,6 @@ sap.ui.define([
                     text: 'Year'
                 }
             });
-		 
-		  var nData = oView.getModel("VincaTestDataModel").getProperty("/rs0/0/VALUE");
-                            this.checkGraph(nData);
 		var scales = [{
      		'feed': 'color',
      		'palette': ['#ffc133']
@@ -748,24 +724,6 @@ sap.ui.define([
  		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
 	     oVizFrame.addFeed(feedCategoryAxis);
-		},
-
-		checkGraph: function(sData){
-			
-			if (sData > 40 ){
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#ffc133']
-      							}];
-      							return sData;
-                            } else{
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#d11020']
-      							}];
-      							return sData;
-                            }
-		
 		},
 
 		OnLoadDay: function(sUrl){
