@@ -8,13 +8,14 @@ sap.ui.define([
 	"sap/viz/ui5/data/DimensionDefinition",
 	"sap/viz/ui5/data/MeasureDefinition",
 	"sap/viz/ui5/controls/common/feeds/FeedItem",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	"Vinca/util/formatter"
 
-], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel) {
+], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
 	"use strict";
 
 	return Controller.extend("Vinca.controller.ChartViewtwo", {
-
+			formatter: formatter,
 
 		onInit: function(){
 
@@ -124,7 +125,8 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-		
+							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+                            this.CheckValue(nData);
 		},
 
 		// for Abschlag
@@ -157,6 +159,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+							
 		},
 
 		fnGetAbschlagDayCost : function(aUrl){
@@ -189,6 +192,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+
 		},
 
 		fnGetAbschlagMonthCost : function(aUrl){
@@ -257,7 +261,8 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-		
+						var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+                            this.CheckValue(nData);
 		},
 
 		fnGetTotalYearCost : function(cUrl){
@@ -290,7 +295,8 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-		
+							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+                            this.CheckValue(nData);
 		},
 
 		fnGetTotalDayCost : function(cUrl){
@@ -323,9 +329,24 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-		
+							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+                            this.CheckValue(nData);
 		},
 
+		CheckValue: function(sData){
+
+                            if (0 <= sData ){
+                            	
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValueNegative");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValuePositive");
+                            } else {
+                            	
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
+
+                            }
+		},
+		
 		fnLoadDefaultValue: function(){
 			var oHtml;
 			var that = this;

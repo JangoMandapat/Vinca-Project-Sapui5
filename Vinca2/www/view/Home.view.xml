@@ -17,7 +17,7 @@
 		<tileContent>
 			<TileContent size="S">
 				<content>
-					<NumericContent size="M" icon="sap-icon://bar-chart" />
+					<NumericContent size="M" icon="sap-icon://lightbulb" />
 				</content>
 			</TileContent>
 		</tileContent>

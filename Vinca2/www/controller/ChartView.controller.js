@@ -691,7 +691,13 @@ sap.ui.define([
 					name : 'Tag',
 					value : "{DAY}"}],
 
-				measures : [{
+			/*	measures : [{
+					name : 'kWh',
+					value : "{VALUE}"},{
+					name : 'Budget',
+					value : 100}],*/
+
+					measures : [{
 					name : 'kWh',
 					value : "{VALUE}"}],
 
@@ -722,6 +728,15 @@ sap.ui.define([
 						text: "kWh"
 					}
 				},
+				/*valueAxis1: {
+					label: {
+						formatString: null
+					},
+					title: {
+						visible: true,
+						text: ""
+					}
+				},*/
                 categoryAxis: {
                     title: {
                         visible: true,
@@ -733,6 +748,7 @@ sap.ui.define([
                     text: 'Year'
                 }
             });
+
 		 
 		  var nData = oView.getModel("VincaTestDataModel").getProperty("/rs0/0/VALUE");
                             this.checkGraph(nData);
@@ -741,11 +757,24 @@ sap.ui.define([
      		'palette': ['#ffc133']
       		}];
 
+      		/*var viztype1 = [{
+     		'vizType' : 'bar'
+     		
+      		}];*/
+
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
+		   		
 		   		'values' : ["kWh"]
 		   	}),
+
+		  /*feedValueAxis1 = new sap.viz.ui5.controls.common.feeds.FeedItem({
+		   		'uid' : "valueAxis",
+		   		'type' : "Measure",
+		   		
+		   		'values' : ["Budget"]
+		   	}),*/
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
@@ -755,6 +784,7 @@ sap.ui.define([
 	     var vizScalesOption = {replace: true};
  		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
+	     /*oVizFrame.addFeed(feedValueAxis1);*/
 	     oVizFrame.addFeed(feedCategoryAxis);
 		},
 
