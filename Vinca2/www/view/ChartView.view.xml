@@ -54,7 +54,7 @@
 							class="chartContainercss"
 							showFullScreen="false"
 						    showPersonalization="false"
-							autoAdjustHeight="true"
+							autoAdjustHeight="false"
 							showLegend="false"
 							showLegendButton="false"
 							showZoom="false"
@@ -95,19 +95,19 @@
 									</layoutData> -->
 								</ObjectListItem>
 								<ObjectListItem id="Stromkosten"
-									title="{path: 'VincaCostDataModel>/rs0/0/COSTS', formatter: '.formatter.CheckCurrencyValue'}€"
+									title="{path: 'VincaCostDataModel>/rs0/0/COSTS', formatter: '.formatter.CheckCurrencyValue'} €"
 									intro="Stromkosten"
 									icon="sap-icon://loan"
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
-									title="{path: 'VincaAbschlagDataModel>/rs0/0/TEE_EL', formatter: '.formatter.CheckCurrencyValue'}€"
+									title="{path: 'VincaElecAbschlagDataModel>/rs0/0/TEE_EL', formatter: '.formatter.CheckCurrencyValue'} €"
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
 								
 								<ObjectListItem id="Differenz"
-									title="{path: 'VincaCostDataModel>/rs0/0/DIFFERENCE', formatter: '.formatter.CheckCurrencyValue'}€"
+									title="{path: 'VincaCostDataModel>/rs0/0/DIFFERENCE', formatter: '.formatter.CheckCurrencyValue'} €"
 									intro="Differenz"
 									icon="sap-icon://commission-check" >
 								</ObjectListItem>

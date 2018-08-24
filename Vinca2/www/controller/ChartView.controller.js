@@ -96,22 +96,22 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaAbschlagDataModel = new JSONModel();
+			var VincaElecAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var id = this._passedvariable.vincaid;
-			var aUrl = "GetAbschlagDay.xsjs?id=" + id;
+			var aUrl = "GetElecAbschlagDay.xsjs?id=" + id;
 			
 
-			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaAbschlagDataModel.setData(data);
+  							VincaElecAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -134,19 +134,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaAbschlagDataModel = new JSONModel();
+			var VincaElecAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaAbschlagDataModel.setData(data);
+  							VincaElecAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
                            
 
                         },
@@ -165,19 +165,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaAbschlagDataModel = new JSONModel();
+			var VincaElecAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaAbschlagDataModel.setData(data);
+  							VincaElecAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -197,19 +197,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaAbschlagDataModel = new JSONModel();
+			var VincaElecAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaAbschlagDataModel.setData(data);
+  							VincaElecAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaAbschlagDataModel, "VincaAbschlagDataModel"); 
+                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -948,7 +948,7 @@ sap.ui.define([
                    case "month":
                         // VincaTestMonth
                         //set correct url
-                        aUrl = "GetAbschlagMonth.xsjs?id=" + id;
+                        aUrl = "GetElecAbschlagMonth.xsjs?id=" + id;
                         sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
                         cUrl = "GetMonthCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year + "&month=" + month +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -966,7 +966,7 @@ sap.ui.define([
 
                         //this.OnLoadYear();
                         //set correct url
-                        aUrl = "GetAbschlagYear.xsjs?id=" + id;
+                        aUrl = "GetElecAbschlagYear.xsjs?id=" + id;
                         sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
                         cUrl = "GetYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -980,7 +980,7 @@ sap.ui.define([
                 case "day":
                         // VincaTestDay
                         //set correct url
-                        aUrl = "GetAbschlagDay.xsjs?id=" + id;
+                        aUrl = "GetElecAbschlagDay.xsjs?id=" + id;
                         sUrl = "VincaTestDay.xsjs?id=" + id + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
                         cUrl = "GetDayCost.xsjs?id=" + id + "&cid=" + cid + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
 

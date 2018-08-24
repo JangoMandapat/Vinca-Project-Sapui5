@@ -27,9 +27,9 @@
 }*/
 .sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex.sapMTBStandard {
 	text-align: center;
-    display: grid;
+    display: grid;*
     /*display: table-column-group;*/
-    /*height: 0rem !important;*/
+ /* height: 0rem !important;*/
 }
 
 
