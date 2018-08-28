@@ -102,6 +102,11 @@
 				"target": "chartviewtwo",
                 "targetControl": "idAppControl"
 			}, {
+				"pattern": "chartviewthree/{vincaid}",
+				"name": "chartviewthree",
+				"target": "chartviewthree",
+                "targetControl": "idAppControl"
+			}, {
 				"pattern": "masterdata/{vincaid}",
 				"name": "masterdata",
 				"target": "masterdata",
@@ -122,6 +127,10 @@
 				},
 				"chartviewtwo": {
 					"viewName": "ChartViewtwo",
+					"transition": "show"
+				},
+				"chartviewthree": {
+					"viewName": "ChartViewthree",
 					"transition": "show"
 				},
 				"masterdata": {

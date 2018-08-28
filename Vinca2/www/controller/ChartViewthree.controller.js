@@ -14,8 +14,8 @@ sap.ui.define([
 ], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
 	"use strict";
 
-	return Controller.extend("Vinca.controller.ChartView", {
-		formatter: formatter,
+	return Controller.extend("Vinca.controller.ChartViewthree", {
+			formatter: formatter,
 
 		onInit: function(){
 
@@ -40,17 +40,17 @@ sap.ui.define([
 			this.getRouter().navTo("chartview",{vincaid:this._passedvariable.vincaid});
 		},
 
+
+		fnNavigateToMaster : function(){
+			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
+		},
+
 		fnNavigateToCharttwo : function(){
 			this.getRouter().navTo("chartviewtwo",{vincaid:this._passedvariable.vincaid});
 		},
 
 		fnNavigateToChartthree : function(){
 			this.getRouter().navTo("chartviewthree",{vincaid:this._passedvariable.vincaid});
-		},
-
-
-		fnNavigateToMaster : function(){
-			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
 		},
 
 		handleMenuItemPress: function(oEvent) {
@@ -69,6 +69,7 @@ sap.ui.define([
 					this.fnNavigateToCharttwo();
 				}else if(msg===">Dein Wasserverbrauch "){
 					this.fnNavigateToChartthree();
+
 				}else if (msg===">Stammdaten"){
 					this.fnNavigateToMaster();
 				}
@@ -101,22 +102,22 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaElecAbschlagDataModel = new JSONModel();
+			var VincaGasAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 			var id = this._passedvariable.vincaid;
-			var aUrl = "GetElecAbschlagDay.xsjs?id=" + id;
+			var aUrl = "GetGasAbschlagDay.xsjs?id=" + id;
 			
 
-			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+			oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaElecAbschlagDataModel.setData(data);
+  							VincaGasAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+                            oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -130,7 +131,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-					var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+							var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
                             this.CheckValue(nData);
 		},
 
@@ -139,19 +140,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaElecAbschlagDataModel = new JSONModel();
+			var VincaGasAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+			oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaElecAbschlagDataModel.setData(data);
+  							VincaGasAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+                            oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
                            
 
                         },
@@ -164,25 +165,26 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+							
 		},
 
 		fnGetAbschlagDayCost : function(aUrl){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaElecAbschlagDataModel = new JSONModel();
+			var VincaGasAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+			oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaElecAbschlagDataModel.setData(data);
+  							VincaGasAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+                            oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -196,25 +198,26 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+
 		},
 
 		fnGetAbschlagMonthCost : function(aUrl){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaElecAbschlagDataModel = new JSONModel();
+			var VincaGasAbschlagDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+			oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
 			$.ajax({
                         url: sHost+aUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaElecAbschlagDataModel.setData(data);
+  							VincaGasAbschlagDataModel.setData(data);
 
-                            oView.setModel(VincaElecAbschlagDataModel, "VincaElecAbschlagDataModel"); 
+                            oView.setModel(VincaGasAbschlagDataModel, "VincaGasAbschlagDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -238,19 +241,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaCostDataModel = new JSONModel();
+			var VincaGasCostDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+			oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
 			$.ajax({
                         url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaCostDataModel.setData(data);
+  							VincaGasCostDataModel.setData(data);
 
-                            oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -264,8 +267,7 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-			
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+						var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
                             this.CheckValue(nData);
 		},
 
@@ -273,19 +275,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaCostDataModel = new JSONModel();
+			var VincaGasCostDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+			oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
 			$.ajax({
                         url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaCostDataModel.setData(data);
+  							VincaGasCostDataModel.setData(data);
 
-                            oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -299,28 +301,27 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+							var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
                             this.CheckValue(nData);
-		
 		},
 
 		fnGetTotalDayCost : function(cUrl){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaCostDataModel = new JSONModel();
+			var VincaGasCostDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+			oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
 			$.ajax({
                         url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaCostDataModel.setData(data);
+  							VincaGasCostDataModel.setData(data);
 
-                            oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -334,19 +335,33 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+							var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
                             this.CheckValue(nData);
 		},
 
+		CheckValue: function(sData){
+
+                            if (0 <= sData ){
+                            	
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValueNegative");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValuePositive");
+                            } else {
+                            	
+                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
+                            	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
+
+                            }
+		},
+		
 		fnLoadDefaultValue: function(){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();	
+			var VincaGasDataModel = new JSONModel();	
 			var oChartContainer = that.getView().byId("chartContainer");	
 			var oDatePicker = that.getView().byId("idDatePicker");
 			var id = this._passedvariable.vincaid;;
-			var sClass= "el";
+			var sClass= "gas";
 			var date = oDatePicker.getValue();
             var year = date.split(".")[2];
             var month = date.split(".")[1];
@@ -359,15 +374,15 @@ sap.ui.define([
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
 			VincaTestDataModel.setData(data);*/
-			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
 			$.ajax({
                         url: sHost+sUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+  							VincaGasDataModel.setData(data);
+                            oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
                             /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
@@ -421,7 +436,7 @@ sap.ui.define([
 				 });
 				
 		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
 
@@ -465,7 +480,7 @@ sap.ui.define([
 
 		   	var scales = [{
      		'feed': 'color',
-     		'palette': ['#ffc133']
+     		'palette': ['#338DFF']
       		}];
 
       		
@@ -493,11 +508,11 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaCostDataModel = new JSONModel();		
+			var VincaGasCostDataModel = new JSONModel();		
 			var oDatePicker = that.getView().byId("idDatePicker");
 			var id = this._passedvariable.vincaid;;
 			var cid = this._passedvariable.vincaid;;
-			var sClass= "el";
+			var sClass= "gas";
 			var date = oDatePicker.getValue();
             var year = date.split(".")[2];
             var month = date.split(".")[1];
@@ -510,16 +525,16 @@ sap.ui.define([
 				"rs0":[{"YEAR":2017,"MONTH":"Jan","VALUE":339},{"YEAR":2017,"MONTH":"Feb","VALUE":100},{"YEAR":2017,"MONTH":"Mar","VALUE":200},{"YEAR":2017,"MONTH":"Apr","VALUE":300},{"YEAR":2017,"MONTH":"May","VALUE":0},{"YEAR":2017,"MONTH":"Jun","VALUE":0},{"YEAR":2017,"MONTH":"Jul","VALUE":0},{"YEAR":2017,"MONTH":"Aug","VALUE":0},{"YEAR":2017,"MONTH":"Sept","VALUE":0},{"YEAR":2017,"MONTH":"Oct","VALUE":0},{"YEAR":2017,"MONTH":"Nov","VALUE":0},{"YEAR":2017,"MONTH":"Dec","VALUE":0}]
 			};
 			VincaTestDataModel.setData(data);*/
-			oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+			oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
 			$.ajax({
                         url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaCostDataModel.setData(data);
+  							VincaGasCostDataModel.setData(data);
 
-                            oView.setModel(VincaCostDataModel, "VincaCostDataModel"); 
+                            oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
@@ -533,40 +548,25 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-							var nData = oView.getModel("VincaCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
-		},
-
-		CheckValue: function(sData){
-
-                            if (0 <= sData ){
-                            	
-                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValueNegative");
-                            	this.getView().byId("Differenz").addStyleClass("colorChangeValuePositive");
-                            } else {
-                            	
-                            	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
-                            	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
-
-                            }
+			
 		},
 
 		OnLoadYear: function(sUrl){
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();
+			var VincaGasDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
 			$.ajax({
                         url: sHost+sUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+  							VincaGasDataModel.setData(data);
+                            oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
                             /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
@@ -599,7 +599,7 @@ sap.ui.define([
 				 });
 				
 		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
 
@@ -633,7 +633,7 @@ sap.ui.define([
             });
 	    var scales = [{
      		'feed': 'color',
-     		'palette': ['#ffc133']
+     		'palette': ['#338DFF']
       		}];
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
@@ -660,20 +660,20 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaTestDataModel = new JSONModel();
+			var VincaGasDataModel = new JSONModel();
 			//var oModel = this.getView().getModel("VincaTestDataModel");
 			
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 		
-			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
 			$.ajax({
                         url: sHost+sUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+  							VincaGasDataModel.setData(data);
+                            oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
                             /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
@@ -696,13 +696,7 @@ sap.ui.define([
 					name : 'Tag',
 					value : "{DAY}"}],
 
-			/*	measures : [{
-					name : 'kWh',
-					value : "{VALUE}"},{
-					name : 'Budget',
-					value : 100}],*/
-
-					measures : [{
+				measures : [{
 					name : 'kWh',
 					value : "{VALUE}"}],
 
@@ -712,7 +706,7 @@ sap.ui.define([
 				 });
 				
 		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
 
@@ -733,15 +727,6 @@ sap.ui.define([
 						text: "kWh"
 					}
 				},
-				/*valueAxis1: {
-					label: {
-						formatString: null
-					},
-					title: {
-						visible: true,
-						text: ""
-					}
-				},*/
                 categoryAxis: {
                     title: {
                         visible: true,
@@ -753,33 +738,16 @@ sap.ui.define([
                     text: 'Year'
                 }
             });
-
-		 
-		  var nData = oView.getModel("VincaTestDataModel").getProperty("/rs0/0/VALUE");
-                            this.checkGraph(nData);
 		var scales = [{
      		'feed': 'color',
-     		'palette': ['#ffc133']
+     		'palette': ['#338DFF']
       		}];
-
-      		/*var viztype1 = [{
-     		'vizType' : 'bar'
-     		
-      		}];*/
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
-		   		
 		   		'values' : ["kWh"]
 		   	}),
-
-		  /*feedValueAxis1 = new sap.viz.ui5.controls.common.feeds.FeedItem({
-		   		'uid' : "valueAxis",
-		   		'type' : "Measure",
-		   		
-		   		'values' : ["Budget"]
-		   	}),*/
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
@@ -789,26 +757,7 @@ sap.ui.define([
 	     var vizScalesOption = {replace: true};
  		 oVizFrame.setVizScales(scales, vizScalesOption);
 	     oVizFrame.addFeed(feedValueAxis);
-	     /*oVizFrame.addFeed(feedValueAxis1);*/
 	     oVizFrame.addFeed(feedCategoryAxis);
-		},
-
-		checkGraph: function(sData){
-			
-			if (sData > 40 ){
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#ffc133']
-      							}];
-      							return sData;
-                            } else{
-                            	var scales = [{
-     							'feed': 'color',
-     							'palette': ['#d11020']
-      							}];
-      							return sData;
-                            }
-		
 		},
 
 		OnLoadDay: function(sUrl){
@@ -817,18 +766,18 @@ sap.ui.define([
 			var oView = this.getView();
 			/*var oModel = this.getView().getModel("VincaTestDataModel");
 			oModel.refresh();*/
-			var VincaTestDataModel = new JSONModel();			
+			var VincaGasDataModel = new JSONModel();			
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+			oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
 			$.ajax({
                         url: sHost+sUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+  							VincaGasDataModel.setData(data);
+                            oView.setModel(VincaGasDataModel, "VincaGasDataModel"); 
                             /*oView.createContent("VincaTestDataModel");*/                  
 
                         },
@@ -862,7 +811,7 @@ sap.ui.define([
 				 });
 				
 		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
+		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
 
@@ -901,7 +850,7 @@ sap.ui.define([
 			});
 		var scales = [{
      		'feed': 'color',
-     		'palette': ['#ffc133']
+     		'palette': ['#338DFF']
       		}];
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -934,13 +883,13 @@ sap.ui.define([
             
             var oChartContainer = that.getView().byId("chartContainer");
             var oDatePicker = that.getView().byId("idDatePicker");
-            var oModel = this.getView().getModel("VincaTestDataModel");
+            var oModel = this.getView().getModel("VincaGasDataModel");
             var sUrl;
             var cUrl;
             var aUrl;
             var id = this._passedvariable.vincaid;;
             var cid = this._passedvariable.vincaid;
-            var sClass = "el";
+            var sClass = "gas";
             //var year = 2017;
            // var month = 1;
             var date = oDatePicker.getValue();
@@ -953,7 +902,7 @@ sap.ui.define([
                    case "month":
                         // VincaTestMonth
                         //set correct url
-                        aUrl = "GetElecAbschlagMonth.xsjs?id=" + id;
+                        aUrl = "GetGasAbschlagMonth.xsjs?id=" + id;
                         sUrl = "VincaTestMonth.xsjs?id=" + id +  "&year=" + year + "&month=" + month + "&class=" + sClass;
                         cUrl = "GetMonthCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year + "&month=" + month +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -971,7 +920,7 @@ sap.ui.define([
 
                         //this.OnLoadYear();
                         //set correct url
-                        aUrl = "GetElecAbschlagYear.xsjs?id=" + id;
+                        aUrl = "GetGasAbschlagYear.xsjs?id=" + id;
                         sUrl = "VincaTestYear.xsjs?id=" + id +"&year=" + year + "&class=" + sClass;
                         cUrl = "GetYearCost.xsjs?id=" + id +"&cid=" + cid + "&year=" + year +"&class=" + sClass
                         //set chart container title to corresponding selection
@@ -985,7 +934,7 @@ sap.ui.define([
                 case "day":
                         // VincaTestDay
                         //set correct url
-                        aUrl = "GetElecAbschlagDay.xsjs?id=" + id;
+                        aUrl = "GetGasAbschlagDay.xsjs?id=" + id;
                         sUrl = "VincaTestDay.xsjs?id=" + id + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
                         cUrl = "GetDayCost.xsjs?id=" + id + "&cid=" + cid + "&year=" + year + "&month=" + month +  "&day=" + day + "&class=" + sClass;
 

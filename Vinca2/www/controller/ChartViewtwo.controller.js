@@ -49,6 +49,10 @@ sap.ui.define([
 			this.getRouter().navTo("chartviewtwo",{vincaid:this._passedvariable.vincaid});
 		},
 
+		fnNavigateToChartthree : function(){
+			this.getRouter().navTo("chartviewthree",{vincaid:this._passedvariable.vincaid});
+		},
+
 		handleMenuItemPress: function(oEvent) {
 			if (oEvent.getParameter("item").getSubmenu()) {
 				return;
@@ -63,7 +67,8 @@ sap.ui.define([
 					this.fnNavigateToChart();
 				}else if(msg===">Dein Gasverbrauch"){
 					this.fnNavigateToCharttwo();
-
+				}else if(msg===">Dein Wasserverbrauch "){
+					this.fnNavigateToChartthree();
 				}else if (msg===">Stammdaten"){
 					this.fnNavigateToMaster();
 				}

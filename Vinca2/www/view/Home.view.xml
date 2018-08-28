@@ -42,7 +42,7 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChartthree" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
 		<tileContent>
 			<TileContent size="S">
 				<content>

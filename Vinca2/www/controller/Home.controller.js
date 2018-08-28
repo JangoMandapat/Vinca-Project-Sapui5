@@ -28,6 +28,10 @@ sap.ui.define([
 			this.getRouter().navTo("chartviewtwo",{vincaid:this._passedvariable.vincaid});
 		},
 
+		fnNavigateToChartthree : function(){
+			this.getRouter().navTo("chartviewthree",{vincaid:this._passedvariable.vincaid});
+		},
+
 		fnNavigateToMaster : function(){
 			this.getRouter().navTo("masterdata",{vincaid:this._passedvariable.vincaid});
 		}
