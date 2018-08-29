@@ -67,7 +67,7 @@ sap.ui.define([
 					this.fnNavigateToChart();
 				}else if(msg===">Dein Gasverbrauch"){
 					this.fnNavigateToCharttwo();
-				}else if(msg===">Dein Wasserverbrauch "){
+				}else if(msg===">Dein Wasserverbrauch"){
 					this.fnNavigateToChartthree();
 				}else if (msg===">Stammdaten"){
 					this.fnNavigateToMaster();
@@ -934,7 +934,7 @@ sap.ui.define([
             
             var oChartContainer = that.getView().byId("chartContainer");
             var oDatePicker = that.getView().byId("idDatePicker");
-            var oModel = this.getView().getModel("VincaTestDataModel");
+            var oModel = that.getView().getModel("VincaTestDataModel");
             var sUrl;
             var cUrl;
             var aUrl;

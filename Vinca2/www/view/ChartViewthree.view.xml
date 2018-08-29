@@ -83,32 +83,32 @@
 						<!-- class for GenericTile class="sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginTop tileLayout" -->
 						
 
-						<layout:Grid defaultSpan="L1 M6 S6" class="gridlayout sapUiTinyMarginTop">
+						<layout:Grid defaultSpan="L1 M6 S6" class="gridlayout sapUiSizeCompact sapUiTinyMarginTop">
 							<layout:content>
 								<!-- Third / Half width items -->
 								<ObjectListItem id="Stromverbrauch"
 
-									title="{path: 'VincaGasCostDataModel>/rs0/0/TOTAL' , formatter: '.formatter.CheckCurrencyValue'} kWh"
-									intro="Gasverbrauch"
-									icon="sap-icon://mileage" >
+									title="{path: 'VincaWaterCostDataModel>/rs0/0/TOTAL' , formatter: '.formatter.CheckCurrencyValue'} l"
+									intro="Wasserverbrauch"
+									icon="sap-icon://blur" >
 									<!-- <layoutData>
 										<layout:GridData span="L6 M12 S12" class="sapUiNoMarginTop" />
 									</layoutData> -->
 								</ObjectListItem>
 								<ObjectListItem id="Stromkosten"
-									title="{path: 'VincaGasCostDataModel>/rs0/0/COSTS', formatter: '.formatter.CheckCurrencyValue'} €"
-									intro="Gaskosten"
+									title="{path: 'VincaWaterCostDataModel>/rs0/0/COSTS', formatter: '.formatter.CheckCurrencyValue'} €"
+									intro="Wasserkosten"
 									icon="sap-icon://loan"
 									height="70%" >
 								</ObjectListItem>
 								<ObjectListItem id="Abschlag"
-									title="{path: 'VincaGasAbschlagDataModel>/rs0/0/TEE_EL', formatter: '.formatter.CheckCurrencyValue'} €"
+									title="{path: 'VincaWaterAbschlagDataModel>/rs0/0/TEE_EL', formatter: '.formatter.CheckCurrencyValue'} €"
 									intro="Abschlag"
 									icon="sap-icon://customer-financial-fact-sheet" >
 								</ObjectListItem>
 								
 								<ObjectListItem id="Differenz"
-									title="{path: 'VincaGasCostDataModel>/rs0/0/DIFFERENCE', formatter: '.formatter.CheckCurrencyValue'} €"
+									title="{path: 'VincaWaterCostDataModel>/rs0/0/DIFFERENCE', formatter: '.formatter.CheckCurrencyValue'} €"
 									intro="Differenz"
 									icon="sap-icon://commission-check" >
 								</ObjectListItem>

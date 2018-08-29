@@ -13,7 +13,7 @@
     <content>
    
    <HBox class="sapUiSizeCompact">
-	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiTinyMarginBegin sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -22,7 +22,7 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+	<GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -33,7 +33,7 @@
 	</GenericTile>
 	</HBox>
 	<HBox class="sapUiSizeCompact">
-	<GenericTile header="Stammdaten" size="S" frameType="OneByOne" press="fnNavigateToMaster" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+	<GenericTile header="Stammdaten" size="S" frameType="OneByOne" press="fnNavigateToMaster" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
 		<tileContent>
 			<TileContent size="S">
 				<content>
@@ -42,7 +42,7 @@
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChartthree" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop ">
+	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChartthree" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
 		<tileContent>
 			<TileContent size="S">
 				<content>

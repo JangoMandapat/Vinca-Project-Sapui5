@@ -6,18 +6,22 @@
 			itemSelect="handleMenuItemPress">
 			<u:MenuItem
 				text="Speisekarte"
+				startsSection="true"
 				/>
 			<u:MenuItem
 				text=">Dein Stromverbrauch"
+				startsSection="true"
 				/>
 			<u:MenuItem
 				text=">Dein Gasverbrauch"
+				startsSection="true"
 				/>
 			<u:MenuItem
 				text=">Dein Wasserverbrauch"
+				startsSection="true"
 				/>
 			<u:MenuItem
-				text=">Stammdaten"
+				text=">Stammdaten"	
 				startsSection="true"
 				/>
 			<!-- <u:MenuItem
