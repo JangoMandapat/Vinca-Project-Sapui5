@@ -118,8 +118,8 @@
 					"viewName": "Login"
 				},
 				"home": {
-					"viewName": "Home"
-
+					"viewName": "Home",
+					"transition": "show"
 				},
 				"chartview": {
 					"viewName": "ChartView",

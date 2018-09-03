@@ -21,13 +21,24 @@
 			<content >
 							<VBox fitContainer="true" justifyContent="Left" alignItems="Left" class="sapUiSmallMarginTop">
 							<items>
-							<Label text="Welcome Angelo Mandapat " class="sapUiSmallMarginBeginEnd"/>
-							<Label text="Stromabschlag pro Monat in €: " class="sapUiSmallMarginBeginEnd sapUiLargeMarginTop"/>
+							<Label text="Willkommen {VincaUserModel>/rs0/0/CUSTOMER_NAME}" class="sapUiSmallMarginBeginEnd"/>
+							<Label text="Vertragsdaten eingeben für:" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+							<SegmentedButton id="sgtbtn" selectedKey="elec" select="OnHandleSwitchTab" class="sapUiSmallMarginBeginEnd ">
+								<items>
+									<SegmentedButtonItem icon="sap-icon://lightbulb" key="elec"/>
+									<SegmentedButtonItem icon="sap-icon://mileage" key="gas"/>
+									<SegmentedButtonItem icon="sap-icon://blur" key="water" />
+								</items>
+							</SegmentedButton>
+							<Label id="label1" text="Abschlag pro Monat in €: " class="sapUiSmallMarginBeginEnd sapUiMediumMarginTop"/>
 							<Input id="Stromabschlag" placeholder="" type="Number" valueLiveUpdate="true" class="sapUiSmallMarginBeginEnd" width="90%"/>
-							<Label text="Stromkosten pro kWh in Cent: " class="sapUiSmallMarginBeginEnd"/>
+
+							<Label id="label2" text="Kosten pro kWh in Cent: " class="sapUiSmallMarginBeginEnd"/>
 							<Input id="Stromkosten" placeholder=""   type="Number" class="sapUiSmallMarginBeginEnd" width="90%" />
-							<Label text="Grundgebühren pro Jahr in €: " class="sapUiSmallMarginBeginEnd"/>
+
+							<Label id="label3" text="Grundgebühren pro Jahr in €: " class="sapUiSmallMarginBeginEnd"/>
 							<Input id="Grundgebuhren" placeholder=""  type="Number" class="sapUiSmallMarginBeginEnd" width="90%"/>
+
 							</items>
 							<Button id="login" width="12rem" text="Speichern" type="Emphasized" press="OnSave" class="sapUiLargeMarginTop sapUiSmallMargin"/> 
 							</VBox>

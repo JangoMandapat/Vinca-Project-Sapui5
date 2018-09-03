@@ -13,48 +13,49 @@
     <content>
    
    <HBox class="sapUiSizeCompact">
-	<GenericTile header="Dein Stromverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChart" class="sapUiTinyMarginBegin sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
-		<tileContent>
-			<TileContent size="S">
-				<content>
-					<NumericContent size="M" icon="sap-icon://lightbulb" />
-				</content>
-			</TileContent>
-		</tileContent>
+   	<GenericTile class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact tileLayout" header="Dein Stromverbrauch"
+		 press="fnNavigateToChart">
+		<TileContent >
+			<ImageContent src="sap-icon://lightbulb" />
+		</TileContent>
 	</GenericTile>
-	<GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
+	<GenericTile class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact tileLayout" header="Dein Gasverbrauch"
+		 press="fnNavigateToCharttwo">
+		<TileContent >
+			<ImageContent src="sap-icon://mileage" />
+		</TileContent>
+	</GenericTile>
+	
+	<!-- <GenericTile header="Dein Gasverbrauch" size="S" frameType="OneByOne" press="fnNavigateToCharttwo" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
 		<tileContent>
 			<TileContent size="S">
 				<content>
-					<NumericContent size="M" icon="sap-icon://mileage" />
+					<NumericContent size="M" icon="sap-icon://" />
 				</content>
 			</TileContent>
 		</tileContent>
+	</GenericTile> -->
+	</HBox>
+	<HBox class="sapUiSizeCompact">
+	
+	<GenericTile class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact tileLayout" header="Dein Wasserverbrauch"
+		 press="fnNavigateToChartthree">
+		<TileContent >
+			<ImageContent src="sap-icon://blur" />
+		</TileContent>
 	</GenericTile>
 	</HBox>
 	<HBox class="sapUiSizeCompact">
-	<GenericTile header="Stammdaten" size="S" frameType="OneByOne" press="fnNavigateToMaster" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
-		<tileContent>
-			<TileContent size="S">
-				<content>
-					<NumericContent size="M" icon="sap-icon://filter-fields" />
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	<GenericTile header="Dein Wasserverbrauch" size="S" frameType="OneByOne" press="fnNavigateToChartthree" class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact">
-		<tileContent>
-			<TileContent size="S">
-				<content>
-					<NumericContent size="M" icon="sap-icon://blur" />
-				</content>
-			</TileContent>
-		</tileContent>
+	<GenericTile class="sapUiTinyMarginBegin sapUiSmallMarginTop sapUiSizeCompact tileLayout" header="Stammdaten"
+		 press="fnNavigateToMaster">
+		<TileContent >
+			<ImageContent src="sap-icon://filter-fields" />
+		</TileContent>
 	</GenericTile>
 	</HBox>
-				</content>
+	</content>
  
-			</Page>
+	</Page>
 		<!-- </pages>
 	</App> -->
 </core:View>

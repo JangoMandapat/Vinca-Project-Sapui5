@@ -87,6 +87,7 @@
 							<layout:content>
 								<!-- Third / Half width items -->
 								<ObjectListItem id="Stromverbrauch"
+									class="total"
 									title="{path: 'VincaCostDataModel>/rs0/0/TOTAL', formatter: '.formatter.CheckCurrencyValue'} kWh"
 									intro="Stromverbrauch"
 									icon="sap-icon://lightbulb" >

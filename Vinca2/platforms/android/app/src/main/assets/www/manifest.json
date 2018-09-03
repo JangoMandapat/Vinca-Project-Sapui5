@@ -97,6 +97,16 @@
 				"target": "chartview",
                 "targetControl": "idAppControl"
 			}, {
+				"pattern": "chartviewtwo/{vincaid}",
+				"name": "chartviewtwo",
+				"target": "chartviewtwo",
+                "targetControl": "idAppControl"
+			}, {
+				"pattern": "chartviewthree/{vincaid}",
+				"name": "chartviewthree",
+				"target": "chartviewthree",
+                "targetControl": "idAppControl"
+			}, {
 				"pattern": "masterdata/{vincaid}",
 				"name": "masterdata",
 				"target": "masterdata",
@@ -108,11 +118,19 @@
 					"viewName": "Login"
 				},
 				"home": {
-					"viewName": "Home"
-
+					"viewName": "Home",
+					"transition": "show"
 				},
 				"chartview": {
 					"viewName": "ChartView",
+					"transition": "show"
+				},
+				"chartviewtwo": {
+					"viewName": "ChartViewtwo",
+					"transition": "show"
+				},
+				"chartviewthree": {
+					"viewName": "ChartViewthree",
 					"transition": "show"
 				},
 				"masterdata": {

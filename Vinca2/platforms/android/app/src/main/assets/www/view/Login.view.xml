@@ -16,7 +16,7 @@
 				<content>
 							<VBox fitContainer="true"  alignItems="Center" class="sapUiLargeMarginTop">
 							<items>
-							<Label text="User credentials"/>
+							<Label text="Benutzerdaten eingeben"/>
 							<Input id="userID"
 								placeholder="Benutzername"
 								value="{/username}"

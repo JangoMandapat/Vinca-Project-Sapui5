@@ -38,6 +38,10 @@ sap.ui.define([
 			this.getRouter().navTo("chartviewthree",{vincaid:this._passedvariable.vincaid});
 		},
 
+		fnNavigateToHome : function(){
+			this.getRouter().navTo("home",{vincaid:this._passedvariable.vincaid});
+		},
+
 		handleMenuItemPress: function(oEvent) {
 			if (oEvent.getParameter("item").getSubmenu()) {
 				return;
@@ -48,14 +52,16 @@ sap.ui.define([
 				msg =  oEvent.getParameter("item").getValue();
 			} else {
 				msg = oEvent.getParameter("item").getText();
-				if(msg===">Dein Stromverbrauch"){
+				if(msg==="Dein Stromverbrauch"){
 					this.fnNavigateToChart();
-				}else if(msg===">Dein Gasverbrauch"){
+				}else if(msg==="Dein Gasverbrauch"){
 					this.fnNavigateToCharttwo();
-				}else if(msg===">Dein Wasserverbrauch"){
+				}else if(msg==="Dein Wasserverbrauch"){
 					this.fnNavigateToChartthree();
-				}else if (msg===">Stammdaten"){
+				}else if (msg==="Stammdaten"){
 					this.fnNavigateToMaster();
+				}else if (msg==="Home"){
+					this.fnNavigateToHome();
 				}
 			}
 

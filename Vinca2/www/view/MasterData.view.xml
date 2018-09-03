@@ -21,7 +21,8 @@
 			<content >
 							<VBox fitContainer="true" justifyContent="Left" alignItems="Left" class="sapUiSmallMarginTop">
 							<items>
-							<Label text="Welcome {VincaUserModel>/rs0/0/CUSTOMER_NAME}" class="sapUiSmallMarginBeginEnd"/>
+							<Label text="Willkommen {VincaUserModel>/rs0/0/CUSTOMER_NAME}" class="sapUiSmallMarginBeginEnd"/>
+							<Label text="Vertragsdaten eingeben für:" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
 							<SegmentedButton id="sgtbtn" selectedKey="elec" select="OnHandleSwitchTab" class="sapUiSmallMarginBeginEnd ">
 								<items>
 									<SegmentedButtonItem icon="sap-icon://lightbulb" key="elec"/>

@@ -53,6 +53,10 @@ sap.ui.define([
 			this.getRouter().navTo("chartviewthree",{vincaid:this._passedvariable.vincaid});
 		},
 
+		fnNavigateToHome : function(){
+			this.getRouter().navTo("home",{vincaid:this._passedvariable.vincaid});
+		},
+
 		handleMenuItemPress: function(oEvent) {
 			if (oEvent.getParameter("item").getSubmenu()) {
 				return;
@@ -63,14 +67,16 @@ sap.ui.define([
 				msg =  oEvent.getParameter("item").getValue();
 			} else {
 				msg = oEvent.getParameter("item").getText();
-				if(msg===">Dein Stromverbrauch"){
+				if(msg==="Dein Stromverbrauch"){
 					this.fnNavigateToChart();
-				}else if(msg===">Dein Gasverbrauch"){
+				}else if(msg==="Dein Gasverbrauch"){
 					this.fnNavigateToCharttwo();
-				}else if(msg===">Dein Wasserverbrauch"){
+				}else if(msg==="Dein Wasserverbrauch"){
 					this.fnNavigateToChartthree();
-				}else if (msg===">Stammdaten"){
+				}else if (msg==="Stammdaten"){
 					this.fnNavigateToMaster();
+				}else if (msg==="Home"){
+					this.fnNavigateToHome();
 				}
 			}
 
@@ -267,7 +273,8 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 						var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+                        var nData2 = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/TOTAL")
+                        this.CheckValue(nData,nData2);
 		},
 
 		fnGetTotalYearCost : function(cUrl){
@@ -301,7 +308,8 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 							var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+                            var nData2 = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/TOTAL")
+                            this.CheckValue(nData,nData2);
 		},
 
 		fnGetTotalDayCost : function(cUrl){
@@ -335,10 +343,12 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 							var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
-                            this.CheckValue(nData);
+                            var nData2 = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/TOTAL")
+                            this.CheckValue(nData,nData2);
+
 		},
 
-		CheckValue: function(sData){
+		CheckValue: function(sData,tData){
 
                             if (0 <= sData ){
                             	
@@ -349,6 +359,12 @@ sap.ui.define([
                             	this.getView().byId("Differenz").removeStyleClass("colorChangeValuePositive");
                             	this.getView().byId("Differenz").addStyleClass("colorChangeValueNegative");
 
+                            }
+
+                             if (tData>=10000){
+                            	this.getView().byId("Stromverbrauch").addStyleClass("total");
+                            } else {
+                            	this.getView().byId("Stromverbrauch").removeStyleClass("total");
                             }
 		},
 		
@@ -547,7 +563,9 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
-			
+			var nData = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/DIFFERENCE");
+			var nData2 = oView.getModel("VincaGasCostDataModel").getProperty("/rs0/0/TOTAL")
+            this.CheckValue(nData,nData2);				
 		},
 
 		OnLoadYear: function(sUrl){

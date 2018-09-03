@@ -5,23 +5,23 @@
 		<u:Menu
 			itemSelect="handleMenuItemPress">
 			<u:MenuItem
-				text="Speisekarte"
+				text="Home"
 				startsSection="true"
 				/>
 			<u:MenuItem
-				text=">Dein Stromverbrauch"
+				text="Dein Stromverbrauch"
 				startsSection="true"
 				/>
 			<u:MenuItem
-				text=">Dein Gasverbrauch"
+				text="Dein Gasverbrauch"
 				startsSection="true"
 				/>
 			<u:MenuItem
-				text=">Dein Wasserverbrauch"
+				text="Dein Wasserverbrauch"
 				startsSection="true"
 				/>
 			<u:MenuItem
-				text=">Stammdaten"	
+				text="Stammdaten"	
 				startsSection="true"
 				/>
 			<!-- <u:MenuItem

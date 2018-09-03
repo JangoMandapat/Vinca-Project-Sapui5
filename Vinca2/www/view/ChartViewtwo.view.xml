@@ -87,7 +87,7 @@
 							<layout:content>
 								<!-- Third / Half width items -->
 								<ObjectListItem id="Stromverbrauch"
-
+									class="total"
 									title="{path: 'VincaGasCostDataModel>/rs0/0/TOTAL' , formatter: '.formatter.CheckCurrencyValue'} kWh"
 									intro="Gasverbrauch"
 									icon="sap-icon://mileage" >

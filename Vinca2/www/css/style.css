@@ -40,3 +40,7 @@
 .colorChangeValuePositive .sapMText {
 	color: #40bf40;
 }
+
+.total .sapMText {
+	font-size: 13px;
+}
