@@ -13,7 +13,7 @@ sap.ui.define([
 
 ], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
 	"use strict";
-
+	//edits
 	return Controller.extend("Vinca.controller.ChartView", {
 		formatter: formatter,
 
