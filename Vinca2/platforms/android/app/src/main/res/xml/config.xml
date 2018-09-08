@@ -21,5 +21,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon density="hdpi" src="/res/icon/android/vinca.png" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

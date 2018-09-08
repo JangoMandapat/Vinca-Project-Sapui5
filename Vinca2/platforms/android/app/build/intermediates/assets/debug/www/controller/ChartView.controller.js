@@ -9,11 +9,12 @@ sap.ui.define([
 	"sap/viz/ui5/data/MeasureDefinition",
 	"sap/viz/ui5/controls/common/feeds/FeedItem",
 	"sap/ui/model/json/JSONModel",
+	"sap/viz/ui5/format/ChartFormatter",
 	"Vinca/util/formatter"
 
-], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
+], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, ChartFormatter, formatter) {
 	"use strict";
-
+	//edits
 	return Controller.extend("Vinca.controller.ChartView", {
 		formatter: formatter,
 

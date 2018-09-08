@@ -1,0 +1,46 @@
+/* Enter your custom styles here d*/
+
+.sapMText.sapMObjLTitle {
+	font-weight: bold;
+}
+
+.gridlayout .sapMLIB.sapMObjLItem {
+	padding: 1px !important;
+}
+
+.sapMSegB {
+	height: 2rem !important;
+}
+
+.sapMObjLIntro{
+	text-align: center;
+}
+.sapMBar .sapMText {
+	font-weight: bold;
+}
+.sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+
+}
+	/*margin-left: 10rem;*/
+	/*margin-left: 150px;
+
+}*/
+.sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex.sapMTBStandard {
+	text-align: center;
+    display: grid;*
+    /*display: table-column-group;*/
+ /* height: 0rem !important;*/
+}
+
+
+.colorChangeValueNegative .sapMText {
+	color: #d11020 !important;
+}
+
+.colorChangeValuePositive .sapMText {
+	color: #40bf40;
+}
+
+.total .sapMText {
+	font-size: 13px;
+}

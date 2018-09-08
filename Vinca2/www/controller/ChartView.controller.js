@@ -9,9 +9,10 @@ sap.ui.define([
 	"sap/viz/ui5/data/MeasureDefinition",
 	"sap/viz/ui5/controls/common/feeds/FeedItem",
 	"sap/ui/model/json/JSONModel",
+	"sap/viz/ui5/format/ChartFormatter",
 	"Vinca/util/formatter"
 
-], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
+], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, ChartFormatter, formatter) {
 	"use strict";
 	//edits
 	return Controller.extend("Vinca.controller.ChartView", {
@@ -577,101 +578,137 @@ sap.ui.define([
 
 			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
 			$.ajax({
-                        url: sHost+sUrl,
-                        type: "GET",
-                        async: false,
-                        success: function(data, textStatus, XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
-                            /*oView.createContent("VincaTestDataModel");*/                  
+	            url: sHost+sUrl,
+	            type: "GET",
+	            async: false,
+	            success: function(data, textStatus, XMLHttpRequest) {
+	                console.log(XMLHttpRequest);
+					VincaTestDataModel.setData(data);
+	                oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+	                /*oView.createContent("VincaTestDataModel");*/      
+	                that.fnLoadYear(VincaTestDataModel);            
 
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            MessageToast.show("Error : " + textStatus);
-                            console.log(XMLHttpRequest);
-                            console.log(errorThrown);
-                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
-                           
-                        },
-                        timeout: 12000 //timeout to 12sec
-                    });
-
-			var oVizFrame = this.getView().byId("idcolumn");
-			oVizFrame.removeAllFeeds();
-			oVizFrame.destroyDataset();
-			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
-
-				dimensions : [{
-					name : 'Monat',
-					value : "{MONTH}"}],
-
-				measures : [{
-					name : 'kWh',
-					value : "{VALUE}"}],
-
-
-				data :{
-					path :"/rs0"
-				   }
-				 });
-				
-		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
-		   oVizFrame.setVizType('column'); //Type of the viz frame
-		   // set Viz Properties
-
-		  oVizFrame.setVizProperties({
-                plotArea: {
-                    dataLabel: {
-                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
-                        visible: false,
-     
-                    }
-                },
-                valueAxis: {
-					label: {
-						formatString: null
-					},
-					title: {
-						visible: true,
-						text: "kWh"
-					}
-				},
-                categoryAxis: {
-                    title: {
-                        visible: true,
-                        text: "Monat"
-                    }
-                },
-                title: {
-                    visible: false,
-                    text: 'Year'
-                }
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                MessageToast.show("Error : " + textStatus);
+	                console.log(XMLHttpRequest);
+	                console.log(errorThrown);
+	                //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+	               
+	            },
+	            timeout: 12000 //timeout to 12sec
             });
-	    var scales = [{
-     		'feed': 'color',
-     		'palette': ['#ffc133']
-      		}];
 
-		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
-		   		'uid' : "valueAxis",
-		   		'type' : "Measure",
-		   		'values' : ["kWh"]
-		   	}),
-
-	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
-		   		'uid' : "categoryAxis",
-		   		'type' : "Dimension",
-		   		'values' : ["Monat"]
-		   	});
-
-	     var vizScalesOption = {replace: true};
- 		 oVizFrame.setVizScales(scales, vizScalesOption);
-	     oVizFrame.addFeed(feedValueAxis);
-	     oVizFrame.addFeed(feedCategoryAxis);
+			
 	     
 		
+		},
+
+		fnLoadYear : function(VincaTestDataModel) {
+			var oVizFrame = this.getView().byId("idcolumn");
+						oVizFrame.removeAllFeeds();
+						oVizFrame.destroyDataset();
+						var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+
+							dimensions : [{
+								name : 'Monat',
+								value : "{MONTH}"}],
+
+							measures : [{
+								name : 'kWh',
+								value : {
+									path : 'VALUE',
+									// formatter : function(iValue, val) {
+									// 	var oNumberFormat = sap.ui.core.format.NumberFormat
+									// 		.getFloatInstance({
+									// 			groupingEnabled : true,
+									// 			groupingSeparator : ".",
+									// 			decimalSeparator : ","
+									// 		});
+									// 	var oValue = oNumberFormat.format(iValue);
+									// 	return oValue;
+									// }
+									type : new sap.ui.model.type.Float({
+										groupingEnabled : false,
+										groupingSeparator : ",",
+										decimalSeparator : ","
+									})
+
+									// type: 'sap.ui.model.type.Float',
+						           	// formatOptions: {
+						            //        minFractionDigits: 2,
+						            //        maxFractionDigits: 2
+						           	// }
+
+
+									// type : new sap.ui.model.type.Float({
+									// 	groupingEnabled : false,
+									// 	groupingSeparator : ","
+									// })
+								}
+							}],
+
+
+							data :{
+								path :"/rs0"
+							   }
+							 });
+					   oVizFrame.setModel(VincaTestDataModel);
+					   oVizFrame.setVizType('column'); //Type of the viz frame
+					   // set Viz Properties
+
+					  oVizFrame.setVizProperties({
+			                plotArea: {
+			                    dataLabel: {
+			                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+			                        visible: false,
+			     
+			                    }
+			                },
+			                valueAxis: {
+								label: {
+									formatString: null
+								},
+								title: {
+									visible: true,
+									text: "kWh"
+								}
+							},
+			                categoryAxis: {
+			                    title: {
+			                        visible: true,
+			                        text: "Monat"
+			                    }
+			                },
+			                title: {
+			                    visible: false,
+			                    text: 'Year'
+			                }
+			            });
+				    var scales = [{
+			     		'feed': 'color',
+			     		'palette': ['#ffc133']
+			      		}];
+
+					var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+					   		'uid' : "valueAxis",
+					   		'type' : "Measure",
+					   		'values' : ["kWh"]
+					   	}),
+
+				         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+					   		'uid' : "categoryAxis",
+					   		'type' : "Dimension",
+					   		'values' : ["Monat"]
+					   	});
+
+				     jQuery.sap.delayedCall(1000,null,function() {
+   						 oVizFrame.setDataset(oDataset);
+				     });
+				     var vizScalesOption = {replace: true};
+			 		 oVizFrame.setVizScales(scales, vizScalesOption);
+				     oVizFrame.addFeed(feedValueAxis);
+				     oVizFrame.addFeed(feedCategoryAxis);
 		},
 
 		OnLoadMonth: function(sUrl){

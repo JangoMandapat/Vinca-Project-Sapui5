@@ -1,0 +1,47 @@
+<core:View 
+	controllerName="Vinca.controller.MasterData"	
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:suite="sap.suite.ui.commons"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	displayBlock="true"
+	>
+			<Page id="detail"  showHeader="true" showNavButton="false" class="SplitContainer" enableScrolling="false"  > 
+			<headerContent>
+			<HBox alignItems="Center" justifyContent="SpaceBetween">
+
+			<Button icon="sap-icon://menu" press="handlePressOpenMenu"/>
+			<Text text="Stammdaten" />
+			<Text class="sapUiSmallMarginBeginEnd"/>
+			</HBox>
+			</headerContent>	
+			<content >
+							<VBox fitContainer="true" justifyContent="Left" alignItems="Left" class="sapUiSmallMarginTop">
+							<items>
+							<Label text="Willkommen {VincaUserModel>/rs0/0/CUSTOMER_NAME}" class="sapUiSmallMarginBeginEnd"/>
+							<Label text="Vertragsdaten eingeben für:" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+							<SegmentedButton id="sgtbtn" selectedKey="elec" select="OnHandleSwitchTab" class="sapUiSmallMarginBeginEnd ">
+								<items>
+									<SegmentedButtonItem icon="sap-icon://lightbulb" key="elec"/>
+									<SegmentedButtonItem icon="sap-icon://mileage" key="gas"/>
+									<SegmentedButtonItem icon="sap-icon://blur" key="water" />
+								</items>
+							</SegmentedButton>
+							<Label id="label1" text="Abschlag pro Monat in €: " class="sapUiSmallMarginBeginEnd sapUiMediumMarginTop"/>
+							<Input id="Stromabschlag" placeholder="" type="Number" valueLiveUpdate="true" class="sapUiSmallMarginBeginEnd" width="90%"/>
+
+							<Label id="label2" text="Kosten pro kWh in Cent: " class="sapUiSmallMarginBeginEnd"/>
+							<Input id="Stromkosten" placeholder=""   type="Number" class="sapUiSmallMarginBeginEnd" width="90%" />
+
+							<Label id="label3" text="Grundgebühren pro Jahr in €: " class="sapUiSmallMarginBeginEnd"/>
+							<Input id="Grundgebuhren" placeholder=""  type="Number" class="sapUiSmallMarginBeginEnd" width="90%"/>
+
+							</items>
+							<Button id="login" width="12rem" text="Speichern" type="Emphasized" press="OnSave" class="sapUiLargeMarginTop sapUiSmallMargin"/> 
+							</VBox>
+						</content>
+			</Page>
+</core:View>

@@ -246,19 +246,19 @@ sap.ui.define([
 			var oHtml;
 			var that = this;
 			var oView = this.getView();
-			var VincaGasCostDataModel = new JSONModel();
+			var VincaWaterCostDataModel = new JSONModel();
 			var sHost = "https://pipemonplus-q.open-grid-europe.com/oge/apps/vinca/GetData/";
 
-			oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
+			oView.setModel(VincaWaterCostDataModel, "VincaWaterCostDataModel"); 
 			$.ajax({
                         url: sHost+cUrl,
                         type: "GET",
                         async: false,
                         success: function(data, textStatus, XMLHttpRequest) {
                             console.log(XMLHttpRequest);
-  							VincaGasCostDataModel.setData(data);
+  							VincaWaterCostDataModel.setData(data);
 
-                            oView.setModel(VincaGasCostDataModel, "VincaGasCostDataModel"); 
+                            oView.setModel(VincaWaterCostDataModel, "VincaWaterCostDataModel"); 
                             //oView.byId("Stromkosten").setModel(VincaCostDataModel);
                             /*oView.createContent("VincaTestDataModel");*/                  
 
