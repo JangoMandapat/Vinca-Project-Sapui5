@@ -578,61 +578,95 @@ sap.ui.define([
 
 			oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
 			$.ajax({
-                        url: sHost+sUrl,
-                        type: "GET",
-                        async: false,
-                        success: function(data, textStatus, XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-  							VincaTestDataModel.setData(data);
-                            oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
-                            /*oView.createContent("VincaTestDataModel");*/                  
+	            url: sHost+sUrl,
+	            type: "GET",
+	            async: false,
+	            success: function(data, textStatus, XMLHttpRequest) {
+	                console.log(XMLHttpRequest);
+					VincaTestDataModel.setData(data);
+	                oView.setModel(VincaTestDataModel, "VincaTestDataModel"); 
+	                /*oView.createContent("VincaTestDataModel");*/      
+	               // that.fnLoadYear(VincaTestDataModel);            
 
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            MessageToast.show("Error : " + textStatus);
-                            console.log(XMLHttpRequest);
-                            console.log(errorThrown);
-                            //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
-                           
-                        },
-                        timeout: 12000 //timeout to 12sec
-                    });
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                MessageToast.show("Error : " + textStatus);
+	                console.log(XMLHttpRequest);
+	                console.log(errorThrown);
+	                //                             that.fnDisplayAjaxMessage(XMLHttpRequest); 
+	               
+	            },
+	            timeout: 12000 //timeout to 12sec
+            });
+
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
 
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
 			oVizFrame.destroyDataset();
+					
 			var oDataset = new sap.viz.ui5.data.FlattenedDataset({
-
 				dimensions : [{
 					name : 'Monat',
-					value : "{MONTH}"}],
-
+					value : "{MONTH}"
+				}],
 				measures : [{
 					name : 'kWh',
-					value : "{VALUE}"}],
-
-
-				data :{
+					value : {
+						path : 'VALUE'
+					}
+				}],
+				data : {
 					path :"/rs0"
-				   }
-				 });
-				
-		   oVizFrame.setDataset(oDataset);
-		   oVizFrame.setModel(VincaTestDataModel);
-		   oVizFrame.setVizType('column'); //Type of the viz frame
-		   // set Viz Properties
-
-		  oVizFrame.setVizProperties({
+				}
+		 	});
+   						
+			oVizFrame.setDataset(oDataset);
+		   	oVizFrame.setModel(VincaTestDataModel);
+		   	oVizFrame.setVizType('column'); //Type of the viz frame
+					   
+		   	// Set Viz Properties
+		   	var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		  	oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
-                       /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
-                        visible: false,
-     
-                    }
+                        visible: false
+                    },
+                referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlag, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Target", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
                 },
+
                 valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -648,29 +682,32 @@ sap.ui.define([
                 title: {
                     visible: false,
                     text: 'Year'
+                },
+                tooltip : {
+                	formatString : FIORI_NUMBER_GER
                 }
             });
-	    var scales = [{
-     		'feed': 'color',
-     		'palette': ['#ffc133']
+		    var scales = [{
+	     		'feed': 'color',
+	     		'palette': ['#ffc133']
       		}];
 
-		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+			var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
 		   		'type' : "Measure",
 		   		'values' : ["kWh"]
 		   	}),
 
-	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+	        feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
 		   		'type' : "Dimension",
 		   		'values' : ["Monat"]
 		   	});
 
-	     var vizScalesOption = {replace: true};
- 		 oVizFrame.setVizScales(scales, vizScalesOption);
-	     oVizFrame.addFeed(feedValueAxis);
-	     oVizFrame.addFeed(feedCategoryAxis);
+		    var vizScalesOption = {replace: true};
+	 		oVizFrame.setVizScales(scales, vizScalesOption);
+		    oVizFrame.addFeed(feedValueAxis);
+		    oVizFrame.addFeed(feedCategoryAxis);
 	     
 		
 		},
@@ -706,6 +743,20 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
+
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
 			oVizFrame.destroyDataset();
@@ -734,18 +785,37 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaTestDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-
+		  var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
 		  oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
                        /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 
                         visible: false
-                    }
+                    },
+
+                    referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlag, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Target", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
                 },
                 valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -781,10 +851,7 @@ sap.ui.define([
      		'palette': ['#ffc133']
       		}];
 
-      		/*var viztype1 = [{
-     		'vizType' : 'bar'
-     		
-      		}];*/
+  
 
 		var  feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "valueAxis",
@@ -793,12 +860,7 @@ sap.ui.define([
 		   		'values' : ["kWh"]
 		   	}),
 
-		  /*feedValueAxis1 = new sap.viz.ui5.controls.common.feeds.FeedItem({
-		   		'uid' : "valueAxis",
-		   		'type' : "Measure",
-		   		
-		   		'values' : ["Budget"]
-		   	}),*/
+		
 
 	         feedCategoryAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
 		   		'uid' : "categoryAxis",
@@ -861,6 +923,20 @@ sap.ui.define([
                         timeout: 12000 //timeout to 12sec
                     });
 
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
+
 
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
@@ -884,20 +960,31 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaTestDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-
+		   var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
 		  oVizFrame.setVizProperties({
 				plotArea: {
 					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 						visible: false
-					}
-				},
-				/*yAxis:{ 
-               		 scale:{ 
-                    	fixedRange:true, 
-                    	minValue:0, 
-                    	maxValue:1
-                    }
-                },*/
+					},
+				referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlag, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Target", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
+                },
 				valueAxis: {
 					label: {
 						formatString: null
