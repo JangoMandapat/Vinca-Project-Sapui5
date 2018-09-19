@@ -638,7 +638,23 @@ sap.ui.define([
 		   	oVizFrame.setVizType('column'); //Type of the viz frame
 					   
 		   	// Set Viz Properties
-		   	var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		   	//var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaTestDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
+
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   }
+		   //sorted = list.rs0.sort(function(a,b) {return a.MONTH - b.MONTH});
 		  	oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
@@ -654,7 +670,7 @@ sap.ui.define([
 											size: 2, 
 											type: "line", 
 											label:{
-												text: "Target", 
+												text: "Abschlag", 
 												visible: true
 												 }
 										}
@@ -685,6 +701,13 @@ sap.ui.define([
                 },
                 tooltip : {
                 	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
                 }
             });
 		    var scales = [{
@@ -785,7 +808,22 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaTestDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-		  var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		  //var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaTestDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
+
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   }
 		  oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
@@ -804,7 +842,7 @@ sap.ui.define([
 											size: 2, 
 											type: "line", 
 											label:{
-												text: "Target", 
+												text: "Abschlag", 
 												visible: true
 												 }
 										}
@@ -822,25 +860,32 @@ sap.ui.define([
 						text: "kWh"
 					}
 				},
-				/*valueAxis1: {
-					label: {
-						formatString: null
-					},
-					title: {
-						visible: true,
-						text: ""
-					}
-				},*/
                 categoryAxis: {
                     title: {
                         visible: true,
                         text: "Tag"
                     },
+                    scale: {
+                              fixedRange : false,
+                              minValue : "0",
+                              maxValue : abschlag
+                    },
                 },
                 title: {
                     visible: false,
                     text: 'Year'
+                },
+                tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
                 }
+              
             });
 
 		 
@@ -960,8 +1005,24 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaTestDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-		   var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
-		  oVizFrame.setVizProperties({
+		   //var abschlag = oView.getModel("VincaTestDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaTestDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
+
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   }
+
+		   oVizFrame.setVizProperties({
 				plotArea: {
 					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 						visible: false
@@ -976,7 +1037,7 @@ sap.ui.define([
 											size: 2, 
 											type: "line", 
 											label:{
-												text: "Target", 
+												text: "Abschlag", 
 												visible: true
 												 }
 										}
@@ -998,12 +1059,27 @@ sap.ui.define([
 					title: {
 						visible: true,
 						text: "Zeitraum"
-					}
+					},
+					scale: {
+                              fixedRange : false,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
 				},
 				title: {
 					visible: false,
 					text: 'Year'
-				}
+				},
+				tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag * 1.15
+                    }
+                }
 			});
 		var scales = [{
      		'feed': 'color',
