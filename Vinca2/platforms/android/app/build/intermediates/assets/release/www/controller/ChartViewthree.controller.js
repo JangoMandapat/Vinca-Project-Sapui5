@@ -9,9 +9,10 @@ sap.ui.define([
 	"sap/viz/ui5/data/MeasureDefinition",
 	"sap/viz/ui5/controls/common/feeds/FeedItem",
 	"sap/ui/model/json/JSONModel",
+	"sap/viz/ui5/format/ChartFormatter",
 	"Vinca/util/formatter"
 
-], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, formatter) {
+], function(jQuery, MessageToast, Fragment, Controller, VizFrame, FlattenedDataset, DimensionDefinition, MeasureDefinition, FeedItem, JSONModel, ChartFormatter, formatter) {
 	"use strict";
 
 	return Controller.extend("Vinca.controller.ChartViewthree", {
@@ -428,7 +429,19 @@ sap.ui.define([
          			alert(xhr.responseText);
      			},
  });*/
-
+ 			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
 
 			
 			var oVizFrame = this.getView().byId("idcolumn");
@@ -453,7 +466,22 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaWaterDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
+		   var abschlagline = oView.getModel("VincaWaterDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaWaterDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
 
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedValue * 1.15);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
+		   }
 		   oVizFrame.setVizProperties({
 				plotArea: {
 					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
@@ -462,7 +490,25 @@ sap.ui.define([
 					},
 
 
-				},
+				referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlagline, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Abschlag", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
+                },
 				/*yAxis:{ 
                		 scale:{ 
                     	fixedRange:true, 
@@ -472,7 +518,7 @@ sap.ui.define([
                 },*/
 				valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -489,7 +535,17 @@ sap.ui.define([
 				title: {
 					visible: false,
 					text: 'Year'
-				}
+				},
+				tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
+                }
 			});
 
 		   	var scales = [{
@@ -597,6 +653,20 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
+
 
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
@@ -620,18 +690,51 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaWaterDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
+		   var abschlagline = oView.getModel("VincaWaterDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaWaterDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
 
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedValue * 1.15);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
+		   }
 		  oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
                        /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
                         visible: false,
      
-                    }
+                    },
+                referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlagline, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Abschlag", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
                 },
                 valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -647,6 +750,16 @@ sap.ui.define([
                 title: {
                     visible: false,
                     text: 'Year'
+                },
+                tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
                 }
             });
 	    var scales = [{
@@ -704,6 +817,19 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
 
 			var oVizFrame = this.getView().byId("idcolumn");
 			oVizFrame.removeAllFeeds();
@@ -727,18 +853,52 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaWaterDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
+		   var abschlagline = oView.getModel("VincaWaterDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaWaterDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
 
-		  oVizFrame.setVizProperties({
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedValue * 1.15);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
+		   }
+		   oVizFrame.setVizProperties({
                 plotArea: {
                     dataLabel: {
                        /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
 
                         visible: false
-                    }
+                    },
+                
+                referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlagline, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Abschlag", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
                 },
                 valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -754,6 +914,16 @@ sap.ui.define([
                 title: {
                     visible: false,
                     text: 'Year'
+                },
+                tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
                 }
             });
 		var scales = [{
@@ -808,6 +978,19 @@ sap.ui.define([
                         },
                         timeout: 12000 //timeout to 12sec
                     });
+			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
 
 
 			var oVizFrame = this.getView().byId("idcolumn");
@@ -832,23 +1015,49 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaWaterDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
+		   var abschlagline = oView.getModel("VincaWaterDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaWaterDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
 
-		  oVizFrame.setVizProperties({
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedValue * 1.15);
+		   }
+		   else if(sortedValue<sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
+		   }
+		   oVizFrame.setVizProperties({
 				plotArea: {
-					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+					dataLabel: { 
 						visible: false
-					}
-				},
-				/*yAxis:{ 
-               		 scale:{ 
-                    	fixedRange:true, 
-                    	minValue:0, 
-                    	maxValue:1
-                    }
-                },*/
+					},
+				referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlagline, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Abschlag", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
+                },
 				valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -864,7 +1073,17 @@ sap.ui.define([
 				title: {
 					visible: false,
 					text: 'Year'
-				}
+				},
+				tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag 
+                    }
+                }
 			});
 		var scales = [{
      		'feed': 'color',

@@ -430,7 +430,19 @@ sap.ui.define([
          			alert(xhr.responseText);
      			},
  });*/
-
+ 			var FIORI_NUMBER_GER = "__UI5__PercentageMaxFraction2";
+          	var chartFormatter = ChartFormatter.getInstance();
+	        chartFormatter.registerCustomFormatter(FIORI_NUMBER_GER, function(value) {
+            	var percentage = sap.ui.core.format.NumberFormat
+					.getFloatInstance({
+						groupingEnabled : true,
+						groupingSeparator : ".",
+						decimalSeparator : ","
+					});
+             	return percentage.format(value);
+          	});
+   			// Apply custom formatter for ChartFormatter
+			sap.viz.api.env.Format.numericFormatter(chartFormatter);
 
 			
 			var oVizFrame = this.getView().byId("idcolumn");
@@ -455,7 +467,22 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
+		   var abschlagline = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
+		   var array =  oView.getModel("VincaGasDataModel").getData();
+		   var aDatacopy = JSON.parse(JSON.stringify(array));
+		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
+		   var sortedValue = aDatacopy.rs0[aDatacopy.rs0.length-1].VALUE;
+		   var sortedAbschlag = aDatacopy.rs0[aDatacopy.rs0.length-1].ABSCHLAG;
+		   var abschlag;
 
+		   if (sortedValue>sortedAbschlag)
+		   {
+		   	   abschlag = parseInt(sortedValue * 1.15);
+		   }
+		   else 
+		   {
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
+		   }
 		   oVizFrame.setVizProperties({
 				plotArea: {
 					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
@@ -464,7 +491,25 @@ sap.ui.define([
 					},
 
 
-				},
+				referenceLine: {
+                    	line: 
+                    	  {
+                    	  	 valueAxis:[
+										{
+											value: abschlagline, 
+											visible: true, 
+											size: 2, 
+											type: "line", 
+											label:{
+												text: "Abschlag", 
+												visible: true
+												 }
+										}
+								]
+							}
+						}
+           
+                },
 				/*yAxis:{ 
                		 scale:{ 
                     	fixedRange:true, 
@@ -474,7 +519,7 @@ sap.ui.define([
                 },*/
 				valueAxis: {
 					label: {
-						formatString: null
+						formatString: FIORI_NUMBER_GER
 					},
 					title: {
 						visible: true,
@@ -491,7 +536,17 @@ sap.ui.define([
 				title: {
 					visible: false,
 					text: 'Year'
-				}
+				},
+				tooltip : {
+                	formatString : FIORI_NUMBER_GER
+                },
+                yAxis : {
+                	scale: {
+                              fixedRange : true,
+                              minValue : "0",
+                              maxValue : abschlag
+                    }
+                }
 			});
 
 		   	var scales = [{
@@ -634,7 +689,7 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-		  //var abschlag = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
+		   var abschlagline = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
 		   var array =  oView.getModel("VincaGasDataModel").getData();
 		   var aDatacopy = JSON.parse(JSON.stringify(array));
 		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
@@ -644,11 +699,11 @@ sap.ui.define([
 
 		   if (sortedValue>sortedAbschlag)
 		   {
-		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedValue * 1.15);
 		   }
 		   else 
 		   {
-		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
 		   }
 		  oVizFrame.setVizProperties({
                 plotArea: {
@@ -662,7 +717,7 @@ sap.ui.define([
                     	  {
                     	  	 valueAxis:[
 										{
-											value: abschlag, 
+											value: abschlagline, 
 											visible: true, 
 											size: 2, 
 											type: "line", 
@@ -798,7 +853,7 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-		  //var abschlag = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
+		   var abschlagline = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
 		   var array =  oView.getModel("VincaGasDataModel").getData();
 		   var aDatacopy = JSON.parse(JSON.stringify(array));
 		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
@@ -808,11 +863,11 @@ sap.ui.define([
 
 		   if (sortedValue>sortedAbschlag)
 		   {
-		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedValue * 1.15);
 		   }
 		   else 
 		   {
-		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
 		   }
 		  oVizFrame.setVizProperties({
                 plotArea: {
@@ -826,7 +881,7 @@ sap.ui.define([
                     	  {
                     	  	 valueAxis:[
 										{
-											value: abschlag, 
+											value: abschlagline, 
 											visible: true, 
 											size: 2, 
 											type: "line", 
@@ -959,7 +1014,7 @@ sap.ui.define([
 		   oVizFrame.setModel(VincaGasDataModel);
 		   oVizFrame.setVizType('column'); //Type of the viz frame
 		   // set Viz Properties
-		  // var abschlag = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
+		   var abschlagline = oView.getModel("VincaGasDataModel").getData().rs0[0].ABSCHLAG;
 		   var array =  oView.getModel("VincaGasDataModel").getData();
 		   var aDatacopy = JSON.parse(JSON.stringify(array));
 		   var sorted = aDatacopy.rs0.sort(function(a,b) {return a.VALUE - b.VALUE});
@@ -969,15 +1024,15 @@ sap.ui.define([
 
 		   if (sortedValue>sortedAbschlag)
 		   {
-		   	   abschlag = parseFloat(sortedValue * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedValue * 1.15);
 		   }
 		   else 
 		   {
-		   	   abschlag = parseFloat(sortedAbschlag * 1.15).toFixed(2);
+		   	   abschlag = parseInt(sortedAbschlag * 1.15);
 		   }
 		  oVizFrame.setVizProperties({
 				plotArea: {
-					dataLabel: { /* formatString:CustomerFormat.FIORI_LABEL_SHORTFORMAT_2,*/
+					dataLabel: { 
 						visible: false
 					},
 				referenceLine: {
@@ -985,7 +1040,7 @@ sap.ui.define([
                     	  {
                     	  	 valueAxis:[
 										{
-											value: abschlag, 
+											value: abschlagline, 
 											visible: true, 
 											size: 2, 
 											type: "line", 

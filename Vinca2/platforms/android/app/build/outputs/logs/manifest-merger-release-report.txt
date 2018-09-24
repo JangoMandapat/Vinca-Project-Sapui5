@@ -9,19 +9,19 @@ INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManif
 INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
 INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:1-14:12
 	package
-		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:102-128
+		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:98-124
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:74-101
+		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:70-97
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 	android:hardwareAccelerated
 		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:129-187
+		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:125-183
 	android:versionCode
-		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
+		ADDED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml:2:46-69
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\xampp\htdocs\Vinca2\platforms\android\app\src\main\AndroidManifest.xml
 supports-screens
